@@ -3,6 +3,7 @@ module Buttons where
 import Data.Monoid
 import Graphics.Gloss
 import Graphics.Gloss.Data.Extent
+import Graphics.Gloss.Interface.Pure.Game
 
 
 buttonC0, buttonT0, buttonC5, buttonT5, buttonC10, buttonT10 :: Extent
@@ -13,8 +14,11 @@ buttonT5  = makeExtent  (-5) (-35)   40   (-40)
 buttonC10 = makeExtent   35     5   140    (60)
 buttonT10 = makeExtent  (-5) (-35)  140    (60)
 
-renderButtons :: (Int, Int, Int) -> Picture
-renderButtons (count0, count5, count10)
+
+-- BUTTON RENDERING
+
+renderButtons :: Int -> Int -> Int -> Picture
+renderButtons count0 count5 count10
     = renderButton buttonC0 (show count0)
    <> renderButton buttonT0 "Toggle"
    <> renderButton buttonC5 (show count5)
@@ -48,3 +52,27 @@ cornerCoords ex = [(w,n), (e,n), (e,s), (w,s)]
 
 cornerPoints :: Extent -> [Point]
 cornerPoints = map coord2point . cornerCoords
+
+
+-- BUTTON EVENTS
+
+data ButtonClick = Click | Toggle deriving (Show, Eq)
+
+isClickedBy :: Extent -> Event -> Bool
+isClickedBy ex (EventKey (MouseButton LeftButton) Down _ p) = pointInExtent ex p
+isClickedBy _ _ = False
+
+event0 :: Event -> Maybe ButtonClick
+event0 e | buttonC0 `isClickedBy` e = Just Click
+         | buttonT0 `isClickedBy` e = Just Toggle
+         | otherwise                = Nothing
+
+event5 :: Event -> Maybe ButtonClick
+event5 e | buttonC5 `isClickedBy` e = Just Click
+         | buttonT5 `isClickedBy` e = Just Toggle
+         | otherwise                = Nothing
+
+event10 :: Event -> Maybe ButtonClick
+event10 e | buttonC10 `isClickedBy` e = Just Click
+          | buttonT10 `isClickedBy` e = Just Toggle
+          | otherwise             = Nothing
