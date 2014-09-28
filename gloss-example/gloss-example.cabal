@@ -10,4 +10,6 @@ cabal-version:       >=1.10
 executable gloss-example
   main-is:             Main.hs
   build-depends:       base >=4.6 && <4.7
+                     , gloss
   default-language:    Haskell2010
+  ghc-options: -W -Wall
