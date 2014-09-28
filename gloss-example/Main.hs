@@ -6,7 +6,7 @@ import Graphics.Gloss
 import Buttons
 
 
--- STATE
+-- State
 
 type State0  = Maybe Int
 type State5  = (Bool, Int)
@@ -22,7 +22,7 @@ init10 :: State10
 init10 = (True, 0)
 
 
--- BEHAVIOUR
+-- Behaviour
 
 step0 :: ButtonClick -> State0 -> State0
 step0 Click Nothing = Nothing
@@ -44,7 +44,7 @@ processEvent (Just event) step state = step event state
 processEvent Nothing _ state = state
 
 
--- OUTPUT
+-- Output
 
 output0 :: State0 -> Int
 output0 Nothing = -1
@@ -59,7 +59,7 @@ output10 (False, _) = -1
 output10 (True, count) = count
 
 
--- GLOSS EVENT LOOP
+-- Gloss event loop
 
 main :: IO ()
 main = play (InWindow "Gloss Example" (320, 240) (800, 200))
