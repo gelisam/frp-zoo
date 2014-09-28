@@ -37,6 +37,12 @@ Similarly, some systems might have builtin events like a `Behaviour MousePositio
 
 ## Libraries
 
+For comparison, here is what the example app would look like if it was implemented without FRP.
+
+* no FRP (pure functions): [example app](gloss-example/Main.hs)
+
+And here is what the same app looks like when implemented with various FRP libraries:
+
 * [Animas](https://hackage.haskell.org/package/Animas): untested
 * [artery](https://hackage.haskell.org/package/artery): untested
 * [bot](https://hackage.haskell.org/package/bot): untested
