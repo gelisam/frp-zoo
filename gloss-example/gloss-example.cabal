@@ -8,6 +8,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 executable gloss-example
+  hs-source-dirs:      ., ../shared
   main-is:             Main.hs
   build-depends:       base >=4.6 && <4.7
                      , gloss
