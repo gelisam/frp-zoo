@@ -18,6 +18,8 @@ Some FRP libraries might support more than one way to change graphs, while other
 
 Thus, the toy program to be implemented in all FRP systems is as follows. A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
 
+![A window with 6 buttons, as described.](toy-app.png)
+
 ## Keywords
 
 Since FRP systems vary along many orthogonal dimentions, I simply plan to list all the libraries in alphabetical order, next to keywords indicating where the library lies in a number of dimensions. Here are the different dimensions I plan to consider.
