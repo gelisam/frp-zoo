@@ -66,9 +66,9 @@ main = do
                300
                ()
                render
-               (\e () -> do processEvent (event0  e) onClick0  onToggle0
-                            processEvent (event5  e) onClick5  onToggle5
-                            processEvent (event10 e) onClick10 onToggle10)
+               (\e () -> do processEvent (filter0  e) onClick0  onToggle0
+                            processEvent (filter5  e) onClick5  onToggle5
+                            processEvent (filter10 e) onClick10 onToggle10)
                (\_ _ -> return ())
       
       where

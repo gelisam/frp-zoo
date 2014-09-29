@@ -69,7 +69,7 @@ main = play (InWindow "Gloss Example" (320, 240) (800, 200))
             (\(state0, (state5, state10)) -> renderButtons (output0  state0)
                                                            (output5  state5)
                                                            (output10 state10))
-            (\e -> processEvent (event0  e) step0
-               *** processEvent (event5  e) step5
-               *** processEvent (event10 e) step10)
+            (\e -> processEvent (filter0  e) step0
+               *** processEvent (filter5  e) step5
+               *** processEvent (filter10 e) step10)
             (\_ -> id)

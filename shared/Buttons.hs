@@ -62,17 +62,17 @@ isClickedBy :: Extent -> Event -> Bool
 isClickedBy ex (EventKey (MouseButton LeftButton) Down _ p) = pointInExtent ex p
 isClickedBy _ _ = False
 
-event0 :: Event -> Maybe ButtonClick
-event0 e | buttonC0 `isClickedBy` e = Just Click
-         | buttonT0 `isClickedBy` e = Just Toggle
-         | otherwise                = Nothing
+filter0 :: Event -> Maybe ButtonClick
+filter0 e | buttonC0 `isClickedBy` e = Just Click
+          | buttonT0 `isClickedBy` e = Just Toggle
+          | otherwise                = Nothing
 
-event5 :: Event -> Maybe ButtonClick
-event5 e | buttonC5 `isClickedBy` e = Just Click
-         | buttonT5 `isClickedBy` e = Just Toggle
-         | otherwise                = Nothing
+filter5 :: Event -> Maybe ButtonClick
+filter5 e | buttonC5 `isClickedBy` e = Just Click
+          | buttonT5 `isClickedBy` e = Just Toggle
+          | otherwise                = Nothing
 
-event10 :: Event -> Maybe ButtonClick
-event10 e | buttonC10 `isClickedBy` e = Just Click
-          | buttonT10 `isClickedBy` e = Just Toggle
-          | otherwise             = Nothing
+filter10 :: Event -> Maybe ButtonClick
+filter10 e | buttonC10 `isClickedBy` e = Just Click
+           | buttonT10 `isClickedBy` e = Just Toggle
+           | otherwise             = Nothing

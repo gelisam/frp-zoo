@@ -38,14 +38,14 @@ mainBanana _ glossEvent = do
     -- Input
     
     click0, click5, click10 :: Event t ()
-    click0  = filterEq (Just Click) $ event0  <$> glossEvent
-    click5  = filterEq (Just Click) $ event5  <$> glossEvent
-    click10 = filterEq (Just Click) $ event10 <$> glossEvent
+    click0  = filterEq (Just Click) $ filter0  <$> glossEvent
+    click5  = filterEq (Just Click) $ filter5  <$> glossEvent
+    click10 = filterEq (Just Click) $ filter10 <$> glossEvent
     
     toggle0, toggle5, toggle10 :: Event t ()
-    toggle0  = filterEq (Just Toggle) $ event0  <$> glossEvent
-    toggle5  = filterEq (Just Toggle) $ event5  <$> glossEvent
-    toggle10 = filterEq (Just Toggle) $ event10 <$> glossEvent
+    toggle0  = filterEq (Just Toggle) $ filter0  <$> glossEvent
+    toggle5  = filterEq (Just Toggle) $ filter5  <$> glossEvent
+    toggle10 = filterEq (Just Toggle) $ filter10 <$> glossEvent
     
     
     -- Behaviour
