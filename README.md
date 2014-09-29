@@ -75,3 +75,7 @@ And here is what the same app looks like when implemented with various FRP libra
 * [spice](https://hackage.haskell.org/package/spice): untested
 * [wxFruit](https://hackage.haskell.org/package/wxFruit): untested
 * [Yampa](https://hackage.haskell.org/package/Yampa): untested
+
+## Contributing
+
+If the example app for your favourite FRP library is missing or non-idiomatic, or if there are other axes of comparison which you think should also be considered, feel free to open an issue or to send a pull request!
