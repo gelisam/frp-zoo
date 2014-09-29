@@ -16,7 +16,7 @@ Which number is displayed now? 10, because that's the total number of clicks? 5,
 
 Some FRP libraries might support more than one way to change graphs, while others might not support graph changes at all. Nevertheless, it should be possible to use the primitives of the library to implement all three scenarios; it will simply be easier to implement the scenario which displays 10 in an FRP library which chooses to continue to count the clicks in the background or which repeats the skipped clicks when the graph is switched back.
 
-Thus, the program to be implemented in all FRP systems is as follows. A [gloss](gloss.ouroborus.net) window shall displays six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
+Thus, the program to be implemented in all FRP systems is as follows. A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
 
 ## Keywords
 
@@ -62,7 +62,7 @@ And here is what the same app looks like when implemented with various FRP libra
 * [reaction-logic](https://hackage.haskell.org/package/reaction-logic): untested
 * [reactive](https://hackage.haskell.org/package/reactive): untested
 * [reactive-bacon](https://hackage.haskell.org/package/reactive-bacon): untested
-* [reactive-banana](https://hackage.haskell.org/package/reactive-banana): untested
+* [reactive-banana](https://hackage.haskell.org/package/reactive-banana): [example app](reactive-banana-example/Main.hs), high-order FRP (scenario 0), Behaviour+Event.
 * [reactive-haskell](https://hackage.haskell.org/package/reactive-haskell): untested
 * [reactive-thread](https://hackage.haskell.org/package/reactive-thread): untested
 * [reenact](https://hackage.haskell.org/package/reenact): untested
