@@ -41,6 +41,7 @@ Similarly, some systems might have builtin events like a `Behaviour MousePositio
 
 For comparison, here is what the example app would look like if it was implemented without FRP.
 
+* no FRP (callbacks): [example app](callback-example/Main.hs)
 * no FRP (pure functions): [example app](gloss-example/Main.hs)
 
 And here is what the same app looks like when implemented with various FRP libraries:
