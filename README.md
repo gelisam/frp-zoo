@@ -18,7 +18,7 @@ Some FRP libraries might support more than one way to change graphs, while other
 
 Thus, the toy program to be implemented in all FRP systems is as follows. A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
 
-![A window with 6 buttons, as described.](toy-app.png)
+<center>![A window with 6 buttons, as described.](toy-app.png)</center>
 
 ## Keywords
 
