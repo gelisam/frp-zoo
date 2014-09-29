@@ -94,7 +94,7 @@ mainBanana _ glossEvent = do
 
 main :: IO ()
 main = playBanana
-            (InWindow "Gloss Example" (320, 240) (800, 200))
+            (InWindow "Reactive-Banana Example" (320, 240) (800, 200))
             white
             300
             mainBanana

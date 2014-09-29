@@ -61,7 +61,7 @@ main = do
         
         -- Gloss event loop
         
-        playIO (InWindow "Gloss Example" (320, 240) (800, 200))
+        playIO (InWindow "Callback Example" (320, 240) (800, 200))
                white
                300
                ()
