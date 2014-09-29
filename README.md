@@ -14,11 +14,14 @@ Following [Evan Czaplicki's excellent video summary of the different categories 
 
 Which number is displayed now? 10, because that's the total number of clicks? 5, because the clicks did not reach the click counter while it was outside the graph? 0, because each graph change resets the state?
 
-Some FRP libraries might support more than one way to change graphs, while others might not support graph changes at all. Nevertheless, it should be possible to use the primitives of the library to implement all three scenarios; it will simply be easier to implement the scenario which displays 10 in an FRP library which chooses to continue to count the clicks in the background or which repeats the skipped clicks when the graph is switched back.
-
-Thus, the toy program to be implemented in all FRP systems is as follows. A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
+For our toy program, we will implement all three scenarios. A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
 
 ![A window with 6 buttons, as described.](toy-app.png)
+
+One important detail in the above specification is that we *must* change the graph if we can. This is important, since the API for modifying the signal graph is a key differentiation factor between FRP libraries. This rule has the unfortunate consequence that examples written with libraries which do not support graph changes can end up being shorter, because it is very simple to obtain the required behaviour by merely filtering events and resetting counters.
+
+So, in this repository, **Simpler does not always mean better!** Examples using more powerful libraries are intentionally written using their more advanced features.
+
 
 ## Keywords
 
@@ -78,4 +81,4 @@ And here is what the same app looks like when implemented with various FRP libra
 
 ## Contributing
 
-If the example app for your favourite FRP library is missing or non-idiomatic, or if there are other axes of comparison which you think should also be considered, feel free to open an issue or to send a pull request!
+If the example app for your favourite FRP library is missing or non-idiomatic, or if there are other axes of comparison which you think should also be considered, feel free to open an issue or to send a pull request! Just make sure that you don't over-simplify an example by replacing graph-modification code with simpler first-order FRP code.
