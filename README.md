@@ -2,6 +2,8 @@
 
 Interested in trying FRP, but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository contains several implementations of the same small program, using various implementations of FRP.
 
+![A window with 6 buttons labelled "0", "5", "10", "toggle", "toggle", and "toggle".](toy-app.png)
+
 ## Example code
 
 For comparison, here is what the example app looks like when it is implemented without FRP.
@@ -55,8 +57,6 @@ Following [Evan Czaplicki's excellent video summary of the different categories 
 Which number is displayed now? 10, because that's the total number of clicks? 5, because the clicks did not reach the click counter while it was outside the graph? 0, because each graph change resets the state?
 
 For our toy program, we will implement all three scenarios. A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
-
-![A window with 6 buttons, as described.](toy-app.png)
 
 One important detail in the above specification is that we *must* change the graph if we can. This is important, since the API for modifying the signal graph is a key differentiation factor between FRP libraries. This rule has the unfortunate consequence that examples written with libraries which do not support graph changes can end up being shorter, because it is very simple to obtain the required behaviour by merely filtering events and resetting counters.
 
