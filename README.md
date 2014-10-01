@@ -51,7 +51,7 @@ If you want to contribute an implementation, here are the other libraries from H
 
 If you haven't heard of [TodoMVC](http://todomvc.com/), it's a website which hosts several implementation of the same simple Todo app, implemented using various Javascript frameworks and languages. This repository attempts to do the same thing, but with Haskell FRP libraries.
 
-Instead of a Todo app, we use a small task which highlights the area in which FRP libraries differ the most: support for dynamic graph.
+Instead of a Todo app, we use a small task which highlights the area in which FRP libraries differ the most: support for dynamic signal graphs.
 
 Following [Evan Czaplicki's excellent video summary of the different categories of FRP libraries](https://www.youtube.com/watch?v=Agu6jipKfYw), we would like to categorize FRP libraries according to the choices they make in their attempt to support dynamic graphs. He gave the following example:
 
