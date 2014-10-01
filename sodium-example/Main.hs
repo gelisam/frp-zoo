@@ -65,7 +65,7 @@ main = do
       count0 <- switch currentGraph0
       
       
-      -- Scenario 5: alternate between two graphs.
+      -- Scenario 5: alternate between two active graphs.
       
       (activeClick5, fireActiveClick5) <- newEvent
       (_,            firePassiveClick5) <- newEvent
@@ -81,7 +81,7 @@ main = do
       count5 <- accum 0 (eachE realActiveClick5 (+1))
       
       
-      -- Scenario 10: alternate between two graphs.
+      -- Scenario 10: alternate between two passive graphs.
       
       activeCount10 <- accum 0 (eachE click10 (+1))
       passiveCount10 <- accum 0 (eachE click10 (+1))
