@@ -74,7 +74,7 @@ And here is what the same app looks like when implemented with various FRP libra
 * [reenact](https://hackage.haskell.org/package/reenact): untested
 * [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp): untested
 * [RxHaskell](https://hackage.haskell.org/package/RxHaskell): untested
-* [sodium](https://hackage.haskell.org/package/sodium): untested
+* [sodium](https://hackage.haskell.org/package/sodium): [example app](sodium-example/Main.hs), asynchronous data flow (all three scenarios), Behaviour+Event.
 * [spice](https://hackage.haskell.org/package/spice): untested
 * [wxFruit](https://hackage.haskell.org/package/wxFruit): untested
 * [Yampa](https://hackage.haskell.org/package/Yampa): untested
