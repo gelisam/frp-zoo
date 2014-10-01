@@ -6,12 +6,12 @@ Interested in trying FRP, but overwhelmed by the number of FRP libraries to choo
 
 ## Example code
 
-For comparison, here is what the example app looks like when it is implemented without FRP.
+For comparison, here is what the code looks like when the app is implemented without FRP.
 
 * no FRP (callbacks): [example app](callback-example/Main.hs)
 * no FRP (pure functions): [example app](gloss-example/Main.hs)
 
-And here is what the same app looks like when implemented with various FRP libraries.
+And here is the same app implemented with various FRP libraries.
 
 * [Animas](https://hackage.haskell.org/package/Animas): untested
 * [artery](https://hackage.haskell.org/package/artery): untested
