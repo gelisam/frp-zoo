@@ -13,6 +13,11 @@ For comparison, here is what the code looks like when the app is implemented wit
 
 And here is the same app implemented with various FRP libraries.
 
+* [reactive-banana](https://hackage.haskell.org/package/reactive-banana): [example app](reactive-banana-example/Main.hs), high-order FRP (scenario 0), Behaviour+Event.
+* [sodium](https://hackage.haskell.org/package/sodium): [example app](sodium-example/Main.hs), asynchronous data flow (all three scenarios), Behaviour+Event.
+
+If you want to contribute an implementation, here are the other libraries from Hackage's FRP category which we haven't looked at yet.
+
 * [Animas](https://hackage.haskell.org/package/Animas): untested
 * [artery](https://hackage.haskell.org/package/artery): untested
 * [bot](https://hackage.haskell.org/package/bot): untested
@@ -32,13 +37,11 @@ And here is the same app implemented with various FRP libraries.
 * [reaction-logic](https://hackage.haskell.org/package/reaction-logic): untested
 * [reactive](https://hackage.haskell.org/package/reactive): untested
 * [reactive-bacon](https://hackage.haskell.org/package/reactive-bacon): untested
-* [reactive-banana](https://hackage.haskell.org/package/reactive-banana): [example app](reactive-banana-example/Main.hs), high-order FRP (scenario 0), Behaviour+Event.
 * [reactive-haskell](https://hackage.haskell.org/package/reactive-haskell): untested
 * [reactive-thread](https://hackage.haskell.org/package/reactive-thread): untested
 * [reenact](https://hackage.haskell.org/package/reenact): untested
 * [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp): untested
 * [RxHaskell](https://hackage.haskell.org/package/RxHaskell): untested
-* [sodium](https://hackage.haskell.org/package/sodium): [example app](sodium-example/Main.hs), asynchronous data flow (all three scenarios), Behaviour+Event.
 * [spice](https://hackage.haskell.org/package/spice): untested
 * [wxFruit](https://hackage.haskell.org/package/wxFruit): untested
 * [Yampa](https://hackage.haskell.org/package/Yampa): untested
