@@ -2,6 +2,46 @@
 
 Interested in trying FRP, but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository will contain several implementations of the same small program, using various implementations of FRP.
 
+## Example code
+
+For comparison, here is what the example app would look like if it was implemented without FRP.
+
+* no FRP (callbacks): [example app](callback-example/Main.hs)
+* no FRP (pure functions): [example app](gloss-example/Main.hs)
+
+And here is what the same app looks like when implemented with various FRP libraries:
+
+* [Animas](https://hackage.haskell.org/package/Animas): untested
+* [artery](https://hackage.haskell.org/package/artery): untested
+* [bot](https://hackage.haskell.org/package/bot): untested
+* [buster](https://hackage.haskell.org/package/buster): untested
+* [definitive-reactive](https://hackage.haskell.org/package/definitive-reactive): untested
+* [Dflow](https://hackage.haskell.org/package/Dflow): untested
+* [drClickOn](https://hackage.haskell.org/package/drClickOn): untested
+* [DysFRP](https://hackage.haskell.org/package/DysFRP): untested
+* [elerea](https://hackage.haskell.org/package/elerea): untested
+* [grapefruit](https://hackage.haskell.org/package/grapefruit-frp): untested
+* [helm](https://hackage.haskell.org/package/helm): untested
+* [io-reactive](https://hackage.haskell.org/package/io-reactive): untested
+* [Moe](https://hackage.haskell.org/package/Moe): untested
+* [netwire](https://hackage.haskell.org/package/netwire): untested
+* [ordrea](https://hackage.haskell.org/package/ordrea): untested
+* [peakachu](https://hackage.haskell.org/package/peakachu): untested
+* [reaction-logic](https://hackage.haskell.org/package/reaction-logic): untested
+* [reactive](https://hackage.haskell.org/package/reactive): untested
+* [reactive-bacon](https://hackage.haskell.org/package/reactive-bacon): untested
+* [reactive-banana](https://hackage.haskell.org/package/reactive-banana): [example app](reactive-banana-example/Main.hs), high-order FRP (scenario 0), Behaviour+Event.
+* [reactive-haskell](https://hackage.haskell.org/package/reactive-haskell): untested
+* [reactive-thread](https://hackage.haskell.org/package/reactive-thread): untested
+* [reenact](https://hackage.haskell.org/package/reenact): untested
+* [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp): untested
+* [RxHaskell](https://hackage.haskell.org/package/RxHaskell): untested
+* [sodium](https://hackage.haskell.org/package/sodium): [example app](sodium-example/Main.hs), asynchronous data flow (all three scenarios), Behaviour+Event.
+* [spice](https://hackage.haskell.org/package/spice): untested
+* [wxFruit](https://hackage.haskell.org/package/wxFruit): untested
+* [Yampa](https://hackage.haskell.org/package/Yampa): untested
+
+
 ## The TodoMVC of FRP libraries
 
 Following [Evan Czaplicki's excellent video summary of the different categories of FRP libraries](https://www.youtube.com/watch?v=Agu6jipKfYw), we would like to categorize FRP libraries according to the choices they make in their attempt to support dynamic graphs. He gave the following example:
@@ -40,44 +80,6 @@ Finally, I have noticed that some systems have a builtin notion of time, from wh
 
 Similarly, some systems might have builtin events like a `Behaviour MousePosition` provided by the library, while others depend on an event loop to feed them events from outside the graph. Since I was planning to use the event loop from gloss in all the implementations, I don't yet know how I would handle a system with builtin events.
 
-## Libraries
-
-For comparison, here is what the example app would look like if it was implemented without FRP.
-
-* no FRP (callbacks): [example app](callback-example/Main.hs)
-* no FRP (pure functions): [example app](gloss-example/Main.hs)
-
-And here is what the same app looks like when implemented with various FRP libraries:
-
-* [Animas](https://hackage.haskell.org/package/Animas): untested
-* [artery](https://hackage.haskell.org/package/artery): untested
-* [bot](https://hackage.haskell.org/package/bot): untested
-* [buster](https://hackage.haskell.org/package/buster): untested
-* [definitive-reactive](https://hackage.haskell.org/package/definitive-reactive): untested
-* [Dflow](https://hackage.haskell.org/package/Dflow): untested
-* [drClickOn](https://hackage.haskell.org/package/drClickOn): untested
-* [DysFRP](https://hackage.haskell.org/package/DysFRP): untested
-* [elerea](https://hackage.haskell.org/package/elerea): untested
-* [grapefruit](https://hackage.haskell.org/package/grapefruit-frp): untested
-* [helm](https://hackage.haskell.org/package/helm): untested
-* [io-reactive](https://hackage.haskell.org/package/io-reactive): untested
-* [Moe](https://hackage.haskell.org/package/Moe): untested
-* [netwire](https://hackage.haskell.org/package/netwire): untested
-* [ordrea](https://hackage.haskell.org/package/ordrea): untested
-* [peakachu](https://hackage.haskell.org/package/peakachu): untested
-* [reaction-logic](https://hackage.haskell.org/package/reaction-logic): untested
-* [reactive](https://hackage.haskell.org/package/reactive): untested
-* [reactive-bacon](https://hackage.haskell.org/package/reactive-bacon): untested
-* [reactive-banana](https://hackage.haskell.org/package/reactive-banana): [example app](reactive-banana-example/Main.hs), high-order FRP (scenario 0), Behaviour+Event.
-* [reactive-haskell](https://hackage.haskell.org/package/reactive-haskell): untested
-* [reactive-thread](https://hackage.haskell.org/package/reactive-thread): untested
-* [reenact](https://hackage.haskell.org/package/reenact): untested
-* [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp): untested
-* [RxHaskell](https://hackage.haskell.org/package/RxHaskell): untested
-* [sodium](https://hackage.haskell.org/package/sodium): [example app](sodium-example/Main.hs), asynchronous data flow (all three scenarios), Behaviour+Event.
-* [spice](https://hackage.haskell.org/package/spice): untested
-* [wxFruit](https://hackage.haskell.org/package/wxFruit): untested
-* [Yampa](https://hackage.haskell.org/package/Yampa): untested
 
 ## Contributing
 
