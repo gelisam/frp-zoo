@@ -1,15 +1,15 @@
 # FRP Zoo
 
-Interested in trying FRP, but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository will contain several implementations of the same small program, using various implementations of FRP.
+Interested in trying FRP, but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository contains several implementations of the same small program, using various implementations of FRP.
 
 ## Example code
 
-For comparison, here is what the example app would look like if it was implemented without FRP.
+For comparison, here is what the example app looks like when it is implemented without FRP.
 
 * no FRP (callbacks): [example app](callback-example/Main.hs)
 * no FRP (pure functions): [example app](gloss-example/Main.hs)
 
-And here is what the same app looks like when implemented with various FRP libraries:
+And here is what the same app looks like when implemented with various FRP libraries.
 
 * [Animas](https://hackage.haskell.org/package/Animas): untested
 * [artery](https://hackage.haskell.org/package/artery): untested
