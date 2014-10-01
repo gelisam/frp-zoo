@@ -2,7 +2,7 @@
 
 Interested in trying FRP, but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository contains several implementations of the same small program, using various implementations of FRP.
 
-![A window with 6 buttons labelled "0", "5", "10", "toggle", "toggle", and "toggle".](toy-app.png)
+![A window with 6 buttons labelled "0", "5", "10", "toggle", "toggle", and "toggle".](toy-app-thumbnail.png)
 
 ## Example code
 
