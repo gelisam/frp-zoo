@@ -13,9 +13,9 @@ For comparison, here is what the code looks like when the app is implemented wit
 
 And here is the same app implemented with various FRP libraries.
 
+* [ordrea](https://hackage.haskell.org/package/ordrea): [example app](ordrea-example/Main.hs), higher-order FRP (scenario 0), Behaviour+Event.
 * [reactive-banana](https://hackage.haskell.org/package/reactive-banana): [example app](reactive-banana-example/Main.hs), high-order FRP (scenario 0), Behaviour+Event.
 * [sodium](https://hackage.haskell.org/package/sodium): [example app](sodium-example/Main.hs), asynchronous data flow (all three scenarios), Behaviour+Event.
-* [ordrea](https://hackage.haskell.org/package/ordrea): [example app](ordrea-example/Main.hs), higher-order FRP (scenario 0), Behaviour+Event.
 
 If you want to contribute an implementation, here are the other libraries from Hackage's FRP category which we haven't looked at yet.
 
