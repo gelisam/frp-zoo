@@ -53,7 +53,9 @@ If you haven't heard of [TodoMVC](http://todomvc.com/), it's a website which hos
 
 Instead of a Todo app, we use a small task which highlights the area in which FRP libraries differ the most: support for dynamic signal graphs.
 
-Following [Evan Czaplicki's excellent video summary of the different categories of FRP libraries](https://www.youtube.com/watch?v=Agu6jipKfYw), we would like to categorize FRP libraries according to the choices they make in their attempt to support dynamic graphs. He gave the following example:
+### Three scenarios
+
+Evan Czaplicki gave an excellent [presentation about the different categories of FRP libraries](https://www.youtube.com/watch?v=Agu6jipKfYw), in which he categorized FRP libraries according to the choices they make in their attempt to support dynamic graphs. He described the following example:
 
 1. Start with a graph which counts the number of clicks.
 1. Click 5 times.
@@ -61,9 +63,21 @@ Following [Evan Czaplicki's excellent video summary of the different categories 
 1. Click 5 more times.
 1. Change the graph back to the original graph.
 
-Which number is displayed now? 10, because that's the total number of clicks? 5, because the clicks did not reach the click counter while it was outside the graph? 0, because each graph change resets the state?
+Which number is displayed now? 0, because the new click counter hasn't received any click yet? 5, because the clicks did not reach the click counter while it was outside the graph? 10, because equational reasoning somehow dictates it?
 
-For our toy program, we will implement all three scenarios. A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
+For our toy program, we implement all three scenarios.
+
+### Specification
+
+A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
+
+To be completely precise about the three scenarios:
+
+* The counter for scenario 0 displays the number of clicks since the launch of the app, or since the corresponding toggle button was last toggled on, whichever is most recent.
+* The counter for scenario 5 displays the total number of clicks which were received while the corresponding toggle was on.
+* The counter for scenario 10 displays the total number of clicks since the launch of the app.
+
+### Changing the signal graph
 
 One important detail in the above specification is that we *must* change the graph if we can. This is important, since the API for modifying the signal graph is a key differentiation factor between FRP libraries. This rule has the unfortunate consequence that examples written with libraries which do not support graph changes can end up being shorter, because it is very simple to obtain the required behaviour by merely filtering events and resetting counters.
 
