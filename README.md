@@ -67,9 +67,9 @@ Which number is displayed now? 0, because the new click counter hasn't received 
 
 For our toy program, we implement all three scenarios.
 
-### Specification
+## Specification
 
-A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, the bottom button changes the graph (if possible, faking it otherwise) so that the top button counts or ignores the clicks, starting with counting. When the clicks are being ignored, the column total displays -1.
+A [gloss](gloss.ouroborus.net) window shall display six buttons, organized as three columns of two buttons. Each column implements one of the above scenarios: the first column chooses 0, the second column chooses 5, and the third column chooses 10. In each column, there is a button whose clicks are counted, and a toggle button to turn the click-counting on and off, starting with off. When off, the counter displays -1.
 
 To be completely precise about the three scenarios:
 
@@ -77,11 +77,23 @@ To be completely precise about the three scenarios:
 * The counter for scenario 5 displays the total number of clicks which were received while the corresponding toggle was on.
 * The counter for scenario 10 displays the total number of clicks since the launch of the app.
 
-### Changing the signal graph
+### First-order implementation
 
-One important detail in the above specification is that we *must* change the graph if we can. This is important, since the API for modifying the signal graph is a key differentiation factor between FRP libraries. This rule has the unfortunate consequence that examples written with libraries which do not support graph changes can end up being shorter, because it is very simple to obtain the required behaviour by merely filtering events and resetting counters.
+In order to compare equivalent features in each library, the first half of the implementation should implement the required behaviour using only the core FRP features which are common to all FRP libraries: filtering events, combining current values, and accumulating changes to a local state.
 
-So, in this repository, **Simpler does not always mean better!** Examples using more powerful libraries are intentionally written using their more advanced features.
+To be completely precise about the expected static graph:
+
+* Each toggle button accumulates `not` operations on a boolean, to establish whether the mode is currently on or off.
+* This boolean is used to filter the click events which reach the counter for scenario 5.
+* The counters for scenarios 5 and 10 accumulate `(+1)` operations on an integer.
+* The counter for scenario 0 accumulates `const 0` and `(+1)` operations, depending on whether the incoming event is a toggle or a click.
+* The current counters and modes are combined so that `-1` is used when the mode is off.
+
+### High-order implementation
+
+In order to compare the parts of the libraries which differ from each other, this second half of the implementation should reimplement some of the scenarios from part one using dynamic graph modifications, when appropriate. Libraries which only support static graphs should skip this section. I hasten to point out that focusing on static graphs is a perfectly valid point in the design space, as explained in Evan's presentation.
+
+For libraries which do support graph modifications, temprarily removing the counter from the graph while the toggle is off should yield one of the three scenarios. It is likely that the other two scenarios cannot be implemented via graph modifications, so there is no need to reimplement them, unless of course the library supports more than one way to transform graphs.
 
 
 ## Keywords
