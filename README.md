@@ -95,7 +95,10 @@ In order to compare the parts of the libraries which differ from each other, thi
 
 For libraries which do support graph modifications, it is likely that only one of the scenarios can be implemented: temporarily remove the counter from the graph while the toggle is off, then try out the application to see which scenario occurs. In the unlikely case of a library which supports more than one way to modify its graph, more than one scenario might be implementable.
 
-Due to the variability, I cannot give a more precise description of the task, but I do want to point out a common trap: don't reimplement first-order primitives using the high-order ones. In scenario 5, for example, it is tempting to switch between a graph which generates click events and a graph which doesn't, but this is simply a filter reimplementation. Instead, demonstrate that the events don't reach the counter when it is outside the graph, by switching between two counters for example.
+Due to the variability, I cannot give a more precise description of the task, but I do want to point out a common trap: don't reimplement first-order primitives using the high-order ones. In particular:
+
+* For scenario 5, it is tempting to switch between a graph which generates click events and a graph which doesn't, but this is simply a filter reimplementation. Instead, demonstrate that the events don't reach the counter when it is outside the graph, by switching between two counters for example.
+* For scenario 10, it is tempting to separately define a counter which counts all clicks and then to switch between this counter and -1, but this is simply combining the current values of existing signals. Instead, demonstrate that events are recorded and replayed, by hiding the definition of your counter inside a conditional for example.
 
 
 ## Keywords
