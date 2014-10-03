@@ -93,7 +93,7 @@ To be completely precise about the expected static graph:
 
 In order to compare the parts of the libraries which differ from each other, this second half of the implementation should reimplement some of the scenarios from part one using dynamic graph modifications, when appropriate. Libraries which only support static graphs should skip this section (I hasten to point out that focusing on static graphs is a perfectly valid point in the design space, as explained in Evan's presentation).
 
-For libraries which do support graph modifications, temprarily removing the counter from the graph while the toggle is off should yield one of the three scenarios. It is likely that the other two scenarios cannot be implemented via graph modifications, so there is no need to reimplement them, unless of course the library supports more than one way to transform graphs.
+For libraries which do support graph modifications, temporarily removing the counter from the graph while the toggle is off should yield one of the three scenarios. It is likely that the other two scenarios cannot be implemented via graph modifications, so there is no need to reimplement them, unless of course the library supports more than one way to transform graphs.
 
 Due to the variability, I cannot give a more precise description of the task, but I do want to point out a common trap: don't reimplement first-order primitives using the high-order ones. In scenario 5, for example, it is tempting to switch between a graph which generates click events and a graph which doesn't, but this is simply a filter reimplementation. Instead, demonstrate that the events don't reach the counter when it is outside the graph, by switching between two counters for example.
 
