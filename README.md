@@ -100,25 +100,23 @@ Due to the variability, I cannot give a more precise description of the task, bu
 * For scenario 5, it is tempting to switch between a graph which generates click events and a graph which doesn't, but this is simply a filter reimplementation. Instead, demonstrate that the events don't reach the counter when it is outside the graph, by switching between two counters for example.
 * For scenario 10, it is tempting to separately define a counter which counts all clicks and then to switch between this counter and -1, but this is simply combining the current values of existing signals. Instead, demonstrate that events are recorded and replayed, by hiding the definition of your counter inside a conditional for example.
 
+### Gloss integration
 
-## Keywords
+Since the goal is to compare FRP implementations, not GUI systems, a simple implementation of the 6 buttons GUI is provided, along with methods to determine whether the current event is a click or a toggle. Gloss supports both IO-based and state-based APIs, which should make it easy to hook up any FRP library. See the existing implementations for details.
 
-Since FRP systems vary along many orthogonal dimentions, I simply plan to list all the libraries in alphabetical order, next to keywords indicating where the library lies in a number of dimensions. Here are the different dimensions I plan to consider.
+## Classification
 
-First, in his video, Evan classifies FRP libraries into four categories:
+Evan's presentation classifies FRP libraries into four categories according to the choices they make regarding dynamic graphs. In our list of implementations at the top of this page, we tag each library with the category it belongs to, as well as the scenarios it can implement via dynamic graph changes. There are also other important distinctions between libraries which have nothing to do with dynamic graphs, whose corresponding tags are described in this section.
 
-1. First order FRP, in which event graphs cannot be changed for the duration of the program.
-1. High-order FRP, in which event streams are infinite and the graphs can be changed in a way which typically matches the "10" scenario.
-1. Asynchronous data flow, in which fast event-processing nodes may receive more recent events than their slower neighbours. Some versions of this model support "cold" signals, in which the event processing is skipped if nobody is listening for the results.
-1. Arrowized FRP, in which graph nodes are automatons which may or may not tick each frame, depending on whether or not they are currently part of the graph. Best for the "5" scenario.
-
-Another distinction is that some systems distinguish between Event streams (which only have values at discrete points in time) and Behaviours (which have values at all points in time), while other systems use a single type Signal to represent both, typically by using `Signal (Maybe a)` to represent events.
-
-Finally, I have noticed that some systems have a builtin notion of time, from which derivatives and other time-based transformations can be computed, while other systems simply advance their state by one step when a new input event is given to the system.
-
-Similarly, some systems might have builtin events like a `Behaviour MousePosition` provided by the library, while others depend on an event loop to feed them events from outside the graph. Since I was planning to use the event loop from gloss in all the implementations, I don't yet know how I would handle a system with builtin events.
+* First-order FRP: from Evan's classification, an FRP library which only supports static graphs.
+* High-order FRP: from Evan's classification, an FRP library in which event streams are infinite and the graphs can be changed in a way which typically matches scenario 10.
+* Asynchronous data flow: from Evan's classification, an FRP library in which fast event-processing nodes may receive more recent events than their slower neighbours. Some versions of this model support "cold" signals, in which the event processing is skipped if nobody is listening for the results.
+* Arrowized FRP: from Evan's classification, an FRP library in which graph nodes are automatons which may or may not tick each frame, depending on whether or not they are currently part of the graph. Best for scenario 5.
+* Signals: an FRP library in which there is only one kind or reactive object: signals.
+* Events and behaviours: an FRP library in which there are two kinds of reactive objects: events and behaviours.
+* Continuous: an FRP library in the style of Conal Eliott, meaning that signals are functions from time to values. This built-in notion of time allows interpolation between values, and other time-based transformations.
 
 
 ## Contributing
 
-If the example app for your favourite FRP library is missing or non-idiomatic, or if there are other axes of comparison which you think should also be considered, feel free to open an issue or to send a pull request! Just make sure that you don't over-simplify an example by replacing graph-modification code with simpler first-order FRP code.
+If the example app for your favourite FRP library is missing or non-idiomatic, or if there are other axes of comparison which you think should also be considered, feel free to open an issue or to send a pull request!
