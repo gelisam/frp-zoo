@@ -9,7 +9,7 @@ import FRP.Ordrea
 import Buttons
 import GlossInterface
 
--- FRP network
+-- Utilities
 
 if_then_else :: Bool -> a -> a -> a
 if_then_else True  t _ = t
