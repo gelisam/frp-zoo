@@ -6,37 +6,37 @@ Interested in trying FRP, but overwhelmed by the number of FRP libraries to choo
 
 library | classification | example app
 :---:|:---:|:---:
-- | no FRP, callbacks | [code](callback-example/Main.hs)
-- | no FRP, pure functions | [code](gloss-example/Main.hs)
+— | no FRP, callbacks | [code](callback-example/Main.hs)
+— | no FRP, pure functions | [code](gloss-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | all three scenarios, high-order, behaviours and events | [code](sodium-example/Main.hs)
-[Animas](https://hackage.haskell.org/package/Animas) | untested | -
-[artery](https://hackage.haskell.org/package/artery) | untested | -
-[bot](https://hackage.haskell.org/package/bot) | untested | -
-[buster](https://hackage.haskell.org/package/buster) | untested | -
-[definitive-reactive](https://hackage.haskell.org/package/definitive-reactive) | untested | -
+[Animas](https://hackage.haskell.org/package/Animas) | untested | —
+[artery](https://hackage.haskell.org/package/artery) | untested | —
+[bot](https://hackage.haskell.org/package/bot) | untested | —
+[buster](https://hackage.haskell.org/package/buster) | untested | —
+[definitive-reactive](https://hackage.haskell.org/package/definitive-reactive) | untested | —
 [Dflow](https://hackage.haskell.org/package/Dflow) | untested | -
-[drClickOn](https://hackage.haskell.org/package/drClickOn) | untested | -
-[DysFRP](https://hackage.haskell.org/package/DysFRP) | untested | -
-[elerea](https://hackage.haskell.org/package/elerea) | untested | -
-[grapefruit](https://hackage.haskell.org/package/grapefruit-frp) | untested | -
-[helm](https://hackage.haskell.org/package/helm) | untested | -
-[io-reactive](https://hackage.haskell.org/package/io-reactive) | untested | -
-[Moe](https://hackage.haskell.org/package/Moe) | untested | -
-[netwire](https://hackage.haskell.org/package/netwire) | untested | -
-[peakachu](https://hackage.haskell.org/package/peakachu) | untested | -
-[reaction-logic](https://hackage.haskell.org/package/reaction-logic) | untested | -
-[reactive](https://hackage.haskell.org/package/reactive) | untested | -
-[reactive-bacon](https://hackage.haskell.org/package/reactive-bacon) | untested | -
-[reactive-haskell](https://hackage.haskell.org/package/reactive-haskell) | untested | -
-[reactive-thread](https://hackage.haskell.org/package/reactive-thread) | untested | -
-[reenact](https://hackage.haskell.org/package/reenact) | untested | -
-[rsagl-frp](https://hackage.haskell.org/package/rsagl-frp) | untested | -
-[RxHaskell](https://hackage.haskell.org/package/RxHaskell) | untested | -
-[spice](https://hackage.haskell.org/package/spice) | untested | -
-[wxFruit](https://hackage.haskell.org/package/wxFruit) | untested | -
-[Yampa](https://hackage.haskell.org/package/Yampa) | untested | -
+[drClickOn](https://hackage.haskell.org/package/drClickOn) | untested | —
+[DysFRP](https://hackage.haskell.org/package/DysFRP) | untested | —
+[elerea](https://hackage.haskell.org/package/elerea) | untested | —
+[grapefruit](https://hackage.haskell.org/package/grapefruit-frp) | untested | —
+[helm](https://hackage.haskell.org/package/helm) | untested | —
+[io-reactive](https://hackage.haskell.org/package/io-reactive) | untested | —
+[Moe](https://hackage.haskell.org/package/Moe) | untested | —
+[netwire](https://hackage.haskell.org/package/netwire) | untested | —
+[peakachu](https://hackage.haskell.org/package/peakachu) | untested | —
+[reaction-logic](https://hackage.haskell.org/package/reaction-logic) | untested | —
+[reactive](https://hackage.haskell.org/package/reactive) | untested | —
+[reactive-bacon](https://hackage.haskell.org/package/reactive-bacon) | untested | —
+[reactive-haskell](https://hackage.haskell.org/package/reactive-haskell) | untested | —
+[reactive-thread](https://hackage.haskell.org/package/reactive-thread) | untested | —
+[reenact](https://hackage.haskell.org/package/reenact) | untested | —
+[rsagl-frp](https://hackage.haskell.org/package/rsagl-frp) | untested | —
+[RxHaskell](https://hackage.haskell.org/package/RxHaskell) | untested | —
+[spice](https://hackage.haskell.org/package/spice) | untested | —
+[wxFruit](https://hackage.haskell.org/package/wxFruit) | untested | —
+[Yampa](https://hackage.haskell.org/package/Yampa) | untested | —
 
 
 ## The TodoMVC of FRP libraries
