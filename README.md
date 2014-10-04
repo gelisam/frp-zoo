@@ -15,9 +15,9 @@ And here is the same app implemented with various FRP libraries.
 
 library | classification | example app
 --- |:---:| ---
-[ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [example app](ordrea-example/Main.hs)
-[reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [example app](reactive-banana-example/Main.hs)
-[sodium](https://hackage.haskell.org/package/sodium) | all three scenarios, high-order, behaviours and events | [example app](sodium-example/Main.hs)
+[ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
+[reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
+[sodium](https://hackage.haskell.org/package/sodium) | all three scenarios, high-order, behaviours and events | [code](sodium-example/Main.hs)
 
 If you want to contribute an implementation, here are the other libraries from Hackage's FRP category which we haven't looked at yet.
 
