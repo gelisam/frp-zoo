@@ -1,6 +1,7 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 module Main where
 import Control.Applicative
+import Data.Monoid
 
 import Graphics.Gloss hiding (pictures)
 import qualified Graphics.Gloss.Interface.IO.Game as G
@@ -23,6 +24,7 @@ generatorD dis = do
   ev <- generatorE =<< preservesD dis
   stepperD undefined ev
 
+
 -- FRP network
 
 mainOrdrea
@@ -30,6 +32,10 @@ mainOrdrea
   -> Event G.Event
   -> SignalGen (Behavior Picture)
 mainOrdrea _ glossEvent = do
+  -- Part 1: static version
+
+  -- Input
+
   let click0  = filterE ((Just Click ==) . filter0)  glossEvent
       click5  = filterE ((Just Click ==) . filter5)  glossEvent
       click10 = filterE ((Just Click ==) . filter10) glossEvent
@@ -38,23 +44,40 @@ mainOrdrea _ glossEvent = do
       toggle5  = filterE ((Just Toggle ==) . filter5)  glossEvent
       toggle10 = filterE ((Just Toggle ==) . filter10) glossEvent
 
+
+  -- Behaviour
+
   mode0  <- scanD True $ not <$ toggle0
   mode5  <- scanD True $ not <$ toggle5
   mode10 <- scanD True $ not <$ toggle10
 
-  let newCount0 :: SignalGen (Discrete Int)
-      newCount0 = scanD 0 $ (+1) <$ click0
-  newCount <- stepperD newCount0 $ newCount0 <$ toggle0
-  count0 <- joinDD =<< generatorD newCount
+  count0  <- scanD 0 $ (const 0 <$ toggle0)
+                    <> ((+1)    <$ click0)
   count5  <- scanD 0 $ (+1) <$ whenE mode5 click5
   count10 <- scanD 0 $ (+1) <$ click10
 
-  let output0  = if_then_else <$> mode0  <*> count0  <*> pure (-1)
-      output5  = if_then_else <$> mode5  <*> count5  <*> pure (-1)
-      output10 = if_then_else <$> mode10 <*> count10 <*> pure (-1)
+
+  -- Part 2: dynamic version
+
+  let newCount0 :: SignalGen (Discrete Int)
+      newCount0 = scanD 0 $ (+1) <$ click0
+  newCount <- stepperD newCount0 $ newCount0 <$ toggle0
+  dynamicCount0 <- joinDD =<< generatorD newCount
+  
+
+  -- Output
+
+  let minus1 = pure (-1)
+      output0        = if_then_else <$> mode0  <*> count0        <*> minus1
+      dynamicOutput0 = if_then_else <$> mode0  <*> dynamicCount0 <*> minus1
+      output5        = if_then_else <$> mode5  <*> count5        <*> minus1
+      output10       = if_then_else <$> mode10 <*> count10       <*> minus1
 
   return $ discreteToBehavior $
-    renderButtons <$> output0 <*> output5 <*> output10
+    renderButtons <$> output0  <*> (Just <$> dynamicOutput0)
+                  <*> output5  <*> pure Nothing
+                  <*> output10 <*> pure Nothing
+
 
 -- Gloss event loop
 
