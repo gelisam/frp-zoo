@@ -15,7 +15,7 @@ buttonC10 = makeExtent   35     5   140    (60)
 buttonT10 = makeExtent  (-5) (-35)  140    (60)
 
 
--- BUTTON RENDERING
+-- Button rendering
 
 renderButtons :: Int -> Int -> Int -> Picture
 renderButtons count0 count5 count10
@@ -54,7 +54,7 @@ cornerPoints :: Extent -> [Point]
 cornerPoints = map coord2point . cornerCoords
 
 
--- BUTTON EVENTS
+-- Button events
 
 data ButtonClick = Click | Toggle deriving (Show, Eq)
 
