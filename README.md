@@ -77,7 +77,7 @@ To be completely precise about the three scenarios:
 * The counter for scenario 5 displays the total number of clicks which were received while the corresponding toggle was on.
 * The counter for scenario 10 displays the total number of clicks since the launch of the app.
 
-### First-order implementation
+### Static implementation
 
 In order to compare equivalent features in each library, the first half of the implementation should implement the required behaviour using only the core FRP features which are common to all FRP libraries: filtering events, combining current values, and accumulating changes to a local state.
 
@@ -89,7 +89,7 @@ To be completely precise about the expected static graph:
 * The counter for scenario 0 accumulates `const 0` and `(+1)` operations, depending on whether the incoming event is a toggle or a click.
 * The current counters and modes are combined so that `-1` is used when the mode is off.
 
-### High-order implementation
+### Dynamic implementation
 
 In order to compare the parts of the libraries which differ from each other, this second half of the implementation should reimplement some of the scenarios from part one using dynamic graph modifications, when appropriate. Libraries which only support static graphs should skip this section (I hasten to point out that focusing on static graphs is a perfectly valid point in the design space, as explained in Evan's presentation).
 
