@@ -4,6 +4,7 @@ import Data.Monoid
 import Graphics.Gloss
 import Graphics.Gloss.Data.Extent
 import Graphics.Gloss.Interface.Pure.Game
+import Text.Printf
 
 
 buttonC0, buttonT0, buttonC5, buttonT5, buttonC10, buttonT10 :: Extent
@@ -17,14 +18,24 @@ buttonT10 = makeExtent  (-5) (-35)  140    (60)
 
 -- Button rendering
 
-renderButtons :: Int -> Int -> Int -> Picture
-renderButtons count0 count5 count10
-    = renderButton buttonC0 (show count0)
-   <> renderButton buttonT0 "Toggle"
-   <> renderButton buttonC5 (show count5)
-   <> renderButton buttonT5 "Toggle"
-   <> renderButton buttonC10 (show count10)
+renderButtons :: Int -> Maybe Int
+              -> Int -> Maybe Int
+              -> Int -> Maybe Int
+              -> Picture
+renderButtons count0  advancedCount0
+              count5  advancedCount5
+              count10 advancedCount10
+    = renderButton buttonC0  (unify count0  advancedCount0)
+   <> renderButton buttonT0  "Toggle"
+   <> renderButton buttonC5  (unify count5  advancedCount5)
+   <> renderButton buttonT5  "Toggle"
+   <> renderButton buttonC10 (unify count10 advancedCount10)
    <> renderButton buttonT10 "Toggle"
+
+unify :: Int -> Maybe Int -> String
+unify n Nothing               = show n
+unify n (Just n') | n == n'   = show n
+                  | otherwise = printf "%d != %d" n n'
 
 
 renderButton :: Extent -> String -> Picture
