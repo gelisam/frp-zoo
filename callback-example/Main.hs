@@ -142,6 +142,7 @@ main = do
             else return (-1)
         
         render :: () -> IO Picture
-        render () = renderButtons <$> chooseLabel count0  mode0
-                                  <*> chooseLabel count5  mode5
-                                  <*> chooseLabel count10 mode10
+        render () = renderButtons
+                <$> chooseLabel count0  mode0  <*> pure Nothing
+                <*> chooseLabel count5  mode5  <*> pure Nothing
+                <*> chooseLabel count10 mode10 <*> pure Nothing
