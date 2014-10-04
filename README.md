@@ -5,7 +5,7 @@ Interested in trying FRP, but overwhelmed by the number of FRP libraries to choo
 ![A window with 6 buttons labelled "0", "5", "10", "toggle", "toggle", and "toggle".](toy-app-thumbnail.png)
 
 library | classification | example app
---- |:---:| ---
+:---:|:---:|:---:
 - | no FRP, callbacks | [code](callback-example/Main.hs)
 - | no FRP, pure functions | [code](gloss-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
