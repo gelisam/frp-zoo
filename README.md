@@ -114,7 +114,7 @@ Evan's presentation classifies FRP libraries into four categories according to t
 * Arrowized FRP: from Evan's classification, an FRP library in which graph nodes are automatons which may or may not tick each frame, depending on whether or not they are currently part of the graph. Best for scenario 5.
 * Signals: an FRP library in which there is only one kind or reactive object: signals.
 * Events and behaviours: an FRP library in which there are two kinds of reactive objects: events and behaviours.
-* Continuous: an FRP library in the style of Conal Eliott, meaning that signals are functions from time to values. This built-in notion of time allows interpolation between values, and other time-based transformations.
+* Continuous: an FRP library in the style of Conal Elliott, meaning that signals are functions from time to values. This built-in notion of time allows interpolation between values, and other time-based transformations.
 
 
 ## Contributing
