@@ -1,6 +1,5 @@
 module GlossInterface where
 
-import Control.Applicative
 import Graphics.Gloss (Color, Display, Picture)
 import qualified Graphics.Gloss.Interface.IO.Game as G
 import FRP.Sodium
