@@ -16,7 +16,7 @@ library | classification | example app
 [bot](https://hackage.haskell.org/package/bot) | untested | —
 [buster](https://hackage.haskell.org/package/buster) | untested | —
 [definitive-reactive](https://hackage.haskell.org/package/definitive-reactive) | untested | —
-[Dflow](https://hackage.haskell.org/package/Dflow) | untested | -
+[Dflow](https://hackage.haskell.org/package/Dflow) | untested | —
 [drClickOn](https://hackage.haskell.org/package/drClickOn) | untested | —
 [DysFRP](https://hackage.haskell.org/package/DysFRP) | untested | —
 [elerea](https://hackage.haskell.org/package/elerea) | untested | —
