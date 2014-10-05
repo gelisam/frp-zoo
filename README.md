@@ -10,7 +10,7 @@ library | classification | example app
 — | no FRP, pure functions | [code](gloss-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
-[sodium](https://hackage.haskell.org/package/sodium) | all three scenarios, high-order, behaviours and events | [code](sodium-example/Main.hs)
+[sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, high-order, behaviours and events | [code](sodium-example/Main.hs)
 [Animas](https://hackage.haskell.org/package/Animas) | untested | —
 [artery](https://hackage.haskell.org/package/artery) | untested | —
 [bot](https://hackage.haskell.org/package/bot) | untested | —
