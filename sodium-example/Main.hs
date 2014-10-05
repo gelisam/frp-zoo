@@ -94,7 +94,9 @@ main = do
       let output5  = if_then_else <$> mode5  <*> count5  <*> pure (-1)
       let output10 = if_then_else <$> mode10 <*> count10 <*> pure (-1)
       
-      return (renderButtons <$> output0 <*> output5 <*> output10)
+      return $ renderButtons <$> output0  <*> pure Nothing
+                             <*> output5  <*> pure Nothing
+                             <*> output10 <*> pure Nothing
     
     let render = sync $ sample picture
     
