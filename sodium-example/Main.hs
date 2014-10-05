@@ -29,6 +29,13 @@ seqE :: Event () -> Event a -> Event a
 seqE ignoredEvent keptEvent = filterJust $ merge (eachE ignoredEvent Nothing)
                                                  (Just <$> keptEvent)
 
+executeB :: Behaviour a
+         -> Event (Reactive (Behaviour a))
+         -> Reactive (Behaviour a)
+executeB initialBehaviour changeBehaviour = do
+    currentBehaviour <- hold initialBehaviour (execute changeBehaviour)
+    switch currentBehaviour
+
 
 -- FRP network
 
@@ -64,37 +71,38 @@ mainSodium _ glossEvent = do
     -- Part 2: dynamic version
     
     -- Scenario 0: generate new graphs and switch to the latest one.
-    
-    let resetRequest0 = gate toggle0 (not <$> mode0)
-    let newCount0 = accum 0 (eachE click0 (+1))
-    let graphChange0 = execute (eachE resetRequest0 newCount0)
-    
-    firstCount0  <- accum 0 (eachE click0  (+1))
-    currentGraph0 <- hold firstCount0 graphChange0
-    dynamicCount0 <- switch currentGraph0
-    
+    let makeDynamicCounter0 = do
+            firstCounter <- newCounter
+            currentCounter <- hold firstCounter counterChange
+            switch currentCounter
+          where
+            resetRequest :: Event ()
+            resetRequest = gate toggle0 (not <$> mode0)
+            
+            newCounter :: Reactive (Behaviour Int)
+            newCounter = accum 0 (eachE click0 (+1))
+            
+            counterChange :: Event (Behaviour Int)
+            counterChange = execute (eachE resetRequest newCounter)
+    dynamicCount0 <- makeDynamicCounter0
     
     -- Scenario 5: alternate between two active graphs.
-    
-    (activeClick5, fireActiveClick5) <- newEvent
-    (_,            firePassiveClick5) <- newEvent
-    
-    let activeGraph5 = eachE click5 (fireActiveClick5 ())
-    let passiveGraph5 = eachE click5 (firePassiveClick5 ())
-    let currentGraph5 = bool passiveGraph5 activeGraph5 <$> mode5
-    let graphChange5 = execute (switchE currentGraph5)
-    
-    -- force graphChange5 to be part of the graph, otherwise its events won't fire
-    let realActiveClick5 = seqE graphChange5 activeClick5
-    
-    dynamicCount5 <- accum 0 (eachE realActiveClick5 (+1))
-    
-    
-    -- Scenario 10: alternate between two passive graphs.
-    
-    activeCount10 <- accum 0 (eachE click10 (+1))
-    passiveCount10 <- accum 0 (eachE click10 (+1))
-    dynamicCount10 <- switch (bool activeCount10 passiveCount10 <$> mode10)
+    let makeDynamicCounter5 = do
+            activeCounterA <- eachE click5 <$> newActiveCounter
+            activeCounterB <- eachE click5 <$> newActiveCounter
+            
+            let activeCounter = bool activeCounterA activeCounterB <$> mode5
+            
+            executeB (pure 0) (switchE activeCounter)
+          where
+            newActiveCounter :: Reactive (Reactive (Behaviour Int))
+            newActiveCounter = do
+              (localEvent, fireLocalEvent) <- newEvent
+              counter <- accum 0 (eachE localEvent (+1))
+              return $ do
+                fireLocalEvent ()
+                return counter
+    dynamicCount5 <- makeDynamicCounter5
     
     
     -- Output
@@ -103,13 +111,12 @@ mainSodium _ glossEvent = do
     let output0         = if_then_else <$> mode0  <*> count0  <*> minus1
     let output5         = if_then_else <$> mode5  <*> count5  <*> minus1
     let output10        = if_then_else <$> mode10 <*> count10 <*> minus1
-    let dynamicOutput0  = if_then_else <$> mode0  <*> dynamicCount0  <*> minus1
-    let dynamicOutput5  = if_then_else <$> mode5  <*> dynamicCount5  <*> minus1
-    let dynamicOutput10 = if_then_else <$> mode10 <*> dynamicCount10 <*> minus1
+    let dynamicOutput0  = if_then_else <$> mode0  <*> dynamicCount0 <*> minus1
+    let dynamicOutput5  = if_then_else <$> mode5  <*> dynamicCount5 <*> minus1
     
     return $ renderButtons <$> output0  <*> (Just <$> dynamicOutput0)
                            <*> output5  <*> (Just <$> dynamicOutput5)
-                           <*> output10 <*> (Just <$> dynamicOutput10)
+                           <*> output10 <*> pure Nothing
 
     
 -- Gloss event loop
