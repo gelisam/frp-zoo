@@ -8,6 +8,7 @@ library | classification | example app
 :---:|:---:|:---:
 — | no FRP, callbacks | [code](callback-example/Main.hs)
 — | no FRP, pure functions | [code](gloss-example/Main.hs)
+[netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowised, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, high-order, behaviours and events | [code](sodium-example/Main.hs)
@@ -24,7 +25,6 @@ library | classification | example app
 [helm](https://hackage.haskell.org/package/helm) | untested | —
 [io-reactive](https://hackage.haskell.org/package/io-reactive) | untested | —
 [Moe](https://hackage.haskell.org/package/Moe) | untested | —
-[netwire](https://hackage.haskell.org/package/netwire) | untested | —
 [peakachu](https://hackage.haskell.org/package/peakachu) | untested | —
 [reaction-logic](https://hackage.haskell.org/package/reaction-logic) | untested | —
 [reactive](https://hackage.haskell.org/package/reactive) | untested | —
