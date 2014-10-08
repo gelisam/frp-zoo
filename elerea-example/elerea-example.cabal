@@ -11,8 +11,8 @@ executable elerea-example
   hs-source-dirs:      ., ../shared
   main-is:             Main.hs
   build-depends:       base >=4.6 && <4.7
-                     , bool-extras
+                     , bool-extras >=0.2.0
                      , gloss >=1.7.8.1
-                     , elerea
+                     , elerea >=2.5.0
   default-language:    Haskell2010
   ghc-options: -W -Wall
