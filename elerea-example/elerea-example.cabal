@@ -10,7 +10,7 @@ cabal-version:       >=1.10
 executable elerea-example
   hs-source-dirs:      ., ../shared
   main-is:             Main.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , bool-extras >=0.2.0
                      , gloss >=1.7.8.1
                      , elerea >=2.5.0

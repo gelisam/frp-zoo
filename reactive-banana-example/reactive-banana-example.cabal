@@ -10,7 +10,7 @@ cabal-version:       >=1.10
 executable reactive-banana-example
   hs-source-dirs:      ., ../shared
   main-is:             Main.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , gloss >=1.8.0.1
                      , gloss-banana >=0.1.0.0
                      , reactive-banana >=0.7.1.0

@@ -10,7 +10,7 @@ cabal-version:       >=1.10
 executable callback-example
   hs-source-dirs:      ., ../shared
   main-is:             Main.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , gloss >=1.7.8.1
   default-language:    Haskell2010
   ghc-options: -W -Wall
