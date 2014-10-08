@@ -8,10 +8,11 @@ library | classification | example app
 :---:|:---:|:---:
 — | no FRP, callbacks | [code](callback-example/Main.hs)
 — | no FRP, pure functions | [code](gloss-example/Main.hs)
-[netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowised, signals | [code](netwire-example/Main.hs)
+[netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, high-order, behaviours and events | [code](sodium-example/Main.hs)
+[Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, signals | [code](Yampa-example/Main.hs)
 [Animas](https://hackage.haskell.org/package/Animas) | untested | —
 [artery](https://hackage.haskell.org/package/artery) | untested | —
 [bot](https://hackage.haskell.org/package/bot) | untested | —
@@ -36,7 +37,6 @@ library | classification | example app
 [RxHaskell](https://hackage.haskell.org/package/RxHaskell) | untested | —
 [spice](https://hackage.haskell.org/package/spice) | untested | —
 [wxFruit](https://hackage.haskell.org/package/wxFruit) | untested | —
-[Yampa](https://hackage.haskell.org/package/Yampa) | untested | —
 
 
 ## The TodoMVC of FRP libraries
