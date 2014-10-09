@@ -4,7 +4,6 @@ module Main where
 import Control.Object
 import Control.Monad.Objective
 import Control.Applicative
-import Control.Monad.State.Class
 import Buttons
 
 import Graphics.Gloss.Interface.IO.Game
@@ -22,10 +21,13 @@ bool :: a -> a -> Bool -> a
 bool a _ False = a
 bool _ b True = b
 
+toggler :: Monad m => Object (Async ButtonClick Bool) m
+toggler = \case { Click -> id; Toggle -> not } `foldO` True
+
 count0 :: IO (Address (Async ButtonClick Int) IO)
 count0 = do
   counter <- new $ \case { Click -> (+1); Toggle -> const 0 } `foldO` (0 :: Int)
-  mode <- new $ \case { Click -> id; Toggle -> not } `foldO` True
+  mode <- new toggler
   new $ liftO $ \case
     Push b -> do
       counter .- Push b
@@ -35,7 +37,7 @@ count0 = do
 count5 :: IO (Address (Async ButtonClick Int) IO)
 count5 = do
   counter <- new $ \case { Click -> (+1); Toggle -> id } `foldO` (0 :: Int)
-  mode <- new $ \case { Click -> id; Toggle -> not } `foldO` True
+  mode <- new toggler
   new $ liftO $ \case
     Push b -> do
       mode .- Push b
@@ -45,7 +47,7 @@ count5 = do
 count10 :: IO (Address (Async ButtonClick Int) IO)
 count10 = do
   counter <- new $ \case { Click -> (+1); Toggle -> id } `foldO` (0 :: Int)
-  mode <- new $ \case { Click -> id; Toggle -> not } `foldO` True
+  mode <- new toggler
   new $ liftO $ \case
     Push b -> do
       counter .- Push b
@@ -56,7 +58,7 @@ main = do
   c0 <- count0
   c5 <- count5
   c10 <- count10
-  playIO (InWindow "Callback Example" (320, 240) (800, 200))
+  playIO (InWindow "Objective Example" (320, 240) (800, 200))
                  white
                  300
                  ()
