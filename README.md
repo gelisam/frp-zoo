@@ -4,10 +4,6 @@
 
 Interested in trying FRP, but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository contains several implementations of the same small program, to give you a taste what each library looks like.
 
-library | classification | example app
-:---:|:---:|:---:
-— | no FRP, callbacks | [code](callback-example/Main.hs)
-— | no FRP, pure functions | [code](gloss-example/Main.hs)
 [netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
@@ -38,6 +34,13 @@ library | classification | example app
 [spice](https://hackage.haskell.org/package/spice) | untested | —
 [wxFruit](https://hackage.haskell.org/package/wxFruit) | untested | —
 
+For comparison, here are a few non-FRP implementations of the same small program.
+
+library | classification | example app
+:---:|:---:|:---:
+— | callbacks | [code](callback-example/Main.hs)
+— | pure functions | [code](gloss-example/Main.hs)
+[objective](https://hackage.haskell.org/package/objective) | scenario 0, push-pull automatons | [code](objective-example/Main.hs)
 
 ## The TodoMVC of FRP libraries
 
