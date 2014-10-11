@@ -7,7 +7,7 @@ Interested in trying FRP, but overwhelmed by the number of FRP libraries to choo
 library | classification | example app
 :---:|:---:|:---:
 [netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
-[ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
+[ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, high-order, behaviours and events | [code](sodium-example/Main.hs)
 [Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, signals | [code](Yampa-example/Main.hs)
@@ -108,9 +108,10 @@ Evan's presentation classifies FRP libraries into four categories according to t
 * First-order FRP: from Evan's classification, an FRP library which only supports static graphs.
 * High-order FRP: from Evan's classification, an FRP library in which event streams are infinite and the graphs can be changed in a way which typically matches scenario 10.
 * Asynchronous data flow: from Evan's classification, an FRP library in which fast event-processing nodes may receive more recent events than their slower neighbours. Some versions of this model support "cold" signals, in which the event processing is skipped if nobody is listening for the results.
-* Arrowized FRP: from Evan's classification, an FRP library in which graph nodes are automatons which may or may not tick each frame, depending on whether or not they are currently part of the graph. Best for scenario 5.
-* Signals: an FRP library in which there is only one kind or reactive object: signals.
-* Events and behaviours: an FRP library in which there are two kinds of reactive objects: events and behaviours.
+* Arrowized FRP: from Evan's classification, an FRP library in which graph nodes are automatons which may or may not tick each frame, depending on whether or not they are currently part of the graph. Best for scenario 5. Another way to view this category is that the primary abstraction isn't signals, but functions between signals.
+* Events and behaviours: an FRP library in which there are two kinds of reactive objects: behaviours hold a value at every point in time, while events only hold values when the event they represent occurs.
+* Signals: an FRP library in which all reactive values hold a value at every point in time. Typically, events are represented via `Maybe`.
+* Step signals: a separate representation for signals whose value only changes at specific points in time, typically when an event occurs.
 * Continuous: an FRP library in the style of Conal Elliott, meaning that signals are functions from time to values. This built-in notion of time allows interpolation between values, and other time-based transformations.
 
 
