@@ -4,6 +4,8 @@
 
 Interested in trying FRP, but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository contains several implementations of the same small program, to give you a taste what each library looks like.
 
+library | classification | example app
+:---:|:---:|:---:
 [netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
