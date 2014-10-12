@@ -8,9 +8,9 @@ library | classification | example app
 :---:|:---:|:---:
 [euphoria](https://github.com/tsurucapital/euphoria) | senario 0, high-order, step signals, behaviours and events | [code](euphoria-example/Main.hs)
 [netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
-[ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
-[reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
-[sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, high-order, behaviours and events | [code](sodium-example/Main.hs)
+[ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, higher-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
+[reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, higher-order, behaviours and events | [code](reactive-banana-example/Main.hs)
+[sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, higher-order, behaviours and events | [code](sodium-example/Main.hs)
 [Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, signals | [code](Yampa-example/Main.hs)
 [Animas](https://hackage.haskell.org/package/Animas) | untested | —
 [artery](https://hackage.haskell.org/package/artery) | untested | —
@@ -93,7 +93,7 @@ In order to compare the parts of the libraries which differ from each other, thi
 
 For libraries which do support graph modifications, it is likely that only one of the scenarios can be implemented: temporarily remove the counter from the graph while the toggle is off, then try out the application to see which scenario occurs. In the unlikely case of a library which supports more than one way to modify its graph, more than one scenario might be implementable.
 
-Due to the variability, I cannot give a more precise description of the task, but I do want to point out a common trap: don't reimplement first-order primitives using the high-order ones. In particular:
+Due to the variability, I cannot give a more precise description of the task, but I do want to point out a common trap: don't reimplement first-order primitives using the higher-order ones. In particular:
 
 * For scenario 5, it is tempting to switch between a graph which generates click events and a graph which doesn't, but this is simply a filter reimplementation. Instead, demonstrate that the events don't reach the counter when it is outside the graph, by switching between two counters for example.
 * For scenario 10, it is tempting to separately define a counter which counts all clicks and then to switch between this counter and -1, but this is simply combining the current values of existing signals. Instead, demonstrate that events are recorded and replayed, by hiding the definition of your counter inside a conditional for example.
