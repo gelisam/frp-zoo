@@ -1,4 +1,4 @@
-{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE LambdaCase, RecursiveDo #-}
 module Main where
 
 import Control.Applicative
@@ -25,6 +25,20 @@ andAlso = liftA2 (&&)
 
 pair :: Signal a -> Signal b -> Signal (a,b)
 pair = liftA2 (,)
+
+updateWhen :: a -> Signal Bool -> (a -> SignalGen a) -> SignalGen (Signal a)
+updateWhen initialValue updateSignal computeNextValue = mdo
+  prev <- delay initialValue curr
+  curr <- generator $ pure $ do
+    prevValue <- snapshot prev
+    shouldUpdate <- snapshot updateSignal
+    if shouldUpdate
+    then computeNextValue prevValue
+    else return prevValue
+  return curr
+
+switch :: Signal (Signal a) -> SignalGen (Signal a)
+switch = generator . fmap snapshot
 
 
 -- FRP network
@@ -63,14 +77,31 @@ mainElerea _ glossEvent = do
              $ stateful 0 (+1)
     
     
+    -- Part 2: dynamic version
+    
+    let makeDynamicCounter0 = do
+            initialCounter <- newCounter
+            currentCounter <- updateWhen initialCounter
+                                         resetRequest (const newCounter)
+            switch currentCounter
+          where
+            resetRequest :: Signal Bool
+            resetRequest = toggle0 `andAlso` (not <$> mode0)
+            
+            newCounter :: SignalGen (Signal Int)
+            newCounter = withClock click0 $ stateful 0 (+1)
+    dynamicCount0 <- makeDynamicCounter0
+    
+    
     -- Output
     
     let minus1 = pure (-1)
-    let output0  = if_then_else <$> mode0  <*> count0  <*> minus1
-    let output5  = if_then_else <$> mode5  <*> count5  <*> minus1
-    let output10 = if_then_else <$> mode10 <*> count10 <*> minus1
+    let output0        = if_then_else <$> mode0  <*> count0        <*> minus1
+    let dynamicOutput0 = if_then_else <$> mode0  <*> dynamicCount0 <*> minus1
+    let output5        = if_then_else <$> mode5  <*> count5        <*> minus1
+    let output10       = if_then_else <$> mode10 <*> count10       <*> minus1
     
-    return $ renderButtons <$> output0  <*> pure Nothing
+    return $ renderButtons <$> output0  <*> (Just <$> dynamicOutput0)
                            <*> output5  <*> pure Nothing
                            <*> output10 <*> pure Nothing
 
