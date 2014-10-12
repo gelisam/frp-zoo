@@ -42,6 +42,16 @@ replaceWhen :: a -> Signal Bool -> SignalGen a -> SignalGen (Signal a)
 replaceWhen initialValue updateSignal computeNextValue
   = updateWhen initialValue updateSignal (const computeNextValue)
 
+-- a variant of
+-- 
+-- > withClock updateSignal (stateful initialValue computeNextValue)
+-- 
+-- where the newly-computed value is available during the tick in which
+-- updateSignal is True instead of one tick afterwards.
+modifyWhen :: a -> Signal Bool -> (a -> a) -> SignalGen (Signal a)
+modifyWhen initialValue updateSignal computeNextValue
+  = updateWhen initialValue updateSignal (return . computeNextValue)
+
 switch :: Signal (Signal a) -> SignalGen (Signal a)
 switch = generator . fmap snapshot
 
@@ -80,19 +90,16 @@ mainElerea _ glossEvent = do
     
     -- Behaviour
     
-    let alternate = stateful True not
-    mode0  <- withClock toggle0  alternate
-    mode5  <- withClock toggle5  alternate
-    mode10 <- withClock toggle10 alternate
+    mode0  <- modifyWhen True toggle0  not
+    mode5  <- modifyWhen True toggle5  not
+    mode10 <- modifyWhen True toggle10 not
     
     count0  <- transfer 0 (\case (True, False) -> const 0
                                  (False, True) -> (+1)
                                  _             -> id)
                           (pair toggle0 click0)
-    count5  <- withClock (mode5 `andAlso` click5)
-             $ stateful 0 (+1)
-    count10 <- withClock click10
-             $ stateful 0 (+1)
+    count5  <- modifyWhen 0 (mode5 `andAlso` click5) (+1)
+    count10 <- modifyWhen 0 click10 (+1)
     
     
     -- Part 2: dynamic version
@@ -106,10 +113,10 @@ mainElerea _ glossEvent = do
             switch currentCounter
           where
             resetRequest :: Signal Bool
-            resetRequest = toggle0 `andAlso` (not <$> mode0)
+            resetRequest = toggle0 `andAlso` mode0
             
             newCounter :: SignalGen (Signal Int)
-            newCounter = withClock click0 $ stateful 0 (+1)
+            newCounter = modifyWhen 0 click0 (+1)
     dynamicCount0 <- makeDynamicCounter0
     
     -- Scenario 5: alternate between two active graphs.
