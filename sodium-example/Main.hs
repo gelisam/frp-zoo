@@ -25,10 +25,6 @@ filterEq x = replaceWith () . filterE (== x)
 eachE :: Event () -> a -> Event a
 eachE = flip replaceWith
 
-seqE :: Event () -> Event a -> Event a
-seqE ignoredEvent keptEvent = filterJust $ merge (eachE ignoredEvent Nothing)
-                                                 (Just <$> keptEvent)
-
 executeB :: Behaviour a
          -> Event (Reactive (Behaviour a))
          -> Reactive (Behaviour a)
