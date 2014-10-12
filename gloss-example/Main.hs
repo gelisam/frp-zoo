@@ -64,7 +64,7 @@ output10 (True, count) = count
 main :: IO ()
 main = play (InWindow "Gloss Example" (320, 240) (800, 200))
             white
-            300
+            30
             (init0, (init5, init10))
             (\(state0, (state5, state10)) ->
               renderButtons (output0  state0)  Nothing

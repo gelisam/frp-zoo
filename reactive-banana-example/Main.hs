@@ -107,5 +107,5 @@ main :: IO ()
 main = playBanana
             (InWindow "Reactive-Banana Example" (320, 240) (800, 200))
             white
-            300
+            30
             mainBanana

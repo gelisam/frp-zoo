@@ -63,7 +63,7 @@ main = do
         
         playIO (InWindow "Callback Example" (320, 240) (800, 200))
                white
-               300
+               30
                ()
                render
                (\e () -> do processEvent (filter0  e) onClick0  onToggle0

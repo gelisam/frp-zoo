@@ -70,7 +70,7 @@ main = do
   c10 <- count10
   playIO (InWindow "Objective Example" (320, 240) (800, 200))
                  white
-                 300
+                 30
                  ()
                  (const $ renderButtons <$> (c0 .- Pull) <*> (fmap Just $ c0' .- Pull)
                   <*> (c5 .- Pull) <*> pure Nothing

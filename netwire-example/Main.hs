@@ -95,6 +95,6 @@ main =
     playNetwire
         (InWindow "Netwire Example" (320, 240) (800, 200))
         white
-        300
+        30
         mainWire
         period

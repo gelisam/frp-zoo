@@ -111,5 +111,5 @@ mainElerea _ glossEvent = do
 main :: IO ()
 main = playElerea (InWindow "Elerea Example" (320, 240) (800, 200))
                   white
-                  300
+                  30
                   mainElerea
