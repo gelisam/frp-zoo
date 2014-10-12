@@ -8,6 +8,7 @@ import Graphics.Gloss.Interface.IO.Game hiding (Event)
 import Buttons
 import GlossInterface
 
+
 -- Utilities
 
 if_then_else :: Bool -> a -> a -> a
@@ -37,8 +38,25 @@ updateWhen initialValue updateSignal computeNextValue = mdo
     else return prevValue
   return curr
 
+replaceWhen :: a -> Signal Bool -> SignalGen a -> SignalGen (Signal a)
+replaceWhen initialValue updateSignal computeNextValue
+  = updateWhen initialValue updateSignal (const computeNextValue)
+
 switch :: Signal (Signal a) -> SignalGen (Signal a)
 switch = generator . fmap snapshot
+
+
+type ActiveSignal a = Signal (SignalGen a)
+
+activeSnapshot :: ActiveSignal a -> SignalGen a
+activeSnapshot activeSignal = do
+    currentAction <- snapshot activeSignal
+    currentValue <- currentAction
+    return currentValue
+
+activeWithClock :: a -> Signal Bool -> ActiveSignal a -> SignalGen (Signal a)
+activeWithClock initialValue clock tick
+  = replaceWhen initialValue clock (activeSnapshot tick)
 
 
 -- FRP network
@@ -79,10 +97,12 @@ mainElerea _ glossEvent = do
     
     -- Part 2: dynamic version
     
+    -- Scenario 0: generate new graphs and switch to the latest one.
     let makeDynamicCounter0 = do
             initialCounter <- newCounter
-            currentCounter <- updateWhen initialCounter
-                                         resetRequest (const newCounter)
+            currentCounter <- replaceWhen initialCounter
+                                          resetRequest
+                                          newCounter
             switch currentCounter
           where
             resetRequest :: Signal Bool
@@ -92,6 +112,25 @@ mainElerea _ glossEvent = do
             newCounter = withClock click0 $ stateful 0 (+1)
     dynamicCount0 <- makeDynamicCounter0
     
+    -- Scenario 5: alternate between two active graphs.
+    let makeDynamicCounter5 = do
+            counterA <- newCounter
+            counterB <- newCounter
+            let currentCounter = if_then_else <$> mode5
+                                              <*> counterA
+                                              <*> counterB
+            activeWithClock 0 click5 currentCounter
+          where
+            newCounter :: SignalGen (ActiveSignal Int)
+            newCounter = do
+              (count, setCount) <- execute $ external 0
+              return $ pure $ do
+                n <- snapshot count
+                let n' = n + 1
+                execute $ setCount n'
+                return n'
+    dynamicCount5 <- makeDynamicCounter5
+    
     
     -- Output
     
@@ -99,10 +138,11 @@ mainElerea _ glossEvent = do
     let output0        = if_then_else <$> mode0  <*> count0        <*> minus1
     let dynamicOutput0 = if_then_else <$> mode0  <*> dynamicCount0 <*> minus1
     let output5        = if_then_else <$> mode5  <*> count5        <*> minus1
+    let dynamicOutput5 = if_then_else <$> mode5  <*> dynamicCount5 <*> minus1
     let output10       = if_then_else <$> mode10 <*> count10       <*> minus1
     
     return $ renderButtons <$> output0  <*> (Just <$> dynamicOutput0)
-                           <*> output5  <*> pure Nothing
+                           <*> output5  <*> (Just <$> dynamicOutput5)
                            <*> output10 <*> pure Nothing
 
 
