@@ -6,6 +6,7 @@ Interested in trying FRP, but overwhelmed by the number of FRP libraries to choo
 
 library | classification | example app
 :---:|:---:|:---:
+[elerea](https://hackage.haskell.org/package/elerea) | scenarios 0 and 5, arrowized, signals | [code](elerea-example/Main.hs)
 [euphoria](https://github.com/tsurucapital/euphoria) | senario 0, high-order, step signals, behaviours and events | [code](euphoria-example/Main.hs)
 [netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, higher-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
@@ -20,7 +21,6 @@ library | classification | example app
 [Dflow](https://hackage.haskell.org/package/Dflow) | untested | —
 [drClickOn](https://hackage.haskell.org/package/drClickOn) | untested | —
 [DysFRP](https://hackage.haskell.org/package/DysFRP) | untested | —
-[elerea](https://hackage.haskell.org/package/elerea) | untested | —
 [grapefruit](https://hackage.haskell.org/package/grapefruit-frp) | untested | —
 [helm](https://hackage.haskell.org/package/helm) | untested | —
 [io-reactive](https://hackage.haskell.org/package/io-reactive) | untested | —
