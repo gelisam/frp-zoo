@@ -6,6 +6,7 @@ Interested in trying FRP, but overwhelmed by the number of FRP libraries to choo
 
 library | classification | example app
 :---:|:---:|:---:
+[euphoria](https://github.com/tsurucapital/euphoria) | senario 0, high-order, step signals, behaviours and events | [code](euphoria-example/Main.hs)
 [netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, high-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, high-order, behaviours and events | [code](reactive-banana-example/Main.hs)
