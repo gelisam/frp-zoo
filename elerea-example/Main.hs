@@ -2,7 +2,7 @@
 module Main where
 
 import Control.Applicative
-import FRP.Elerea.Clocked
+import FRP.Elerea.Simple
 import Graphics.Gloss.Interface.IO.Game hiding (Event)
 
 import Buttons

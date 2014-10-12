@@ -1,6 +1,6 @@
 module GlossInterface where
 
-import FRP.Elerea.Clocked
+import FRP.Elerea.Simple
 import Graphics.Gloss (Color, Display, Picture)
 import qualified Graphics.Gloss.Interface.IO.Game as G
 
