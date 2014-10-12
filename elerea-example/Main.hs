@@ -55,6 +55,9 @@ modifyWhen initialValue updateSignal computeNextValue
 switch :: Signal (Signal a) -> SignalGen (Signal a)
 switch = generator . fmap snapshot
 
+seqSignal :: Signal a -> Signal b -> Signal b
+seqSignal = liftA2 seq
+
 
 type ActiveSignal a = Signal (SignalGen a)
 
@@ -121,21 +124,32 @@ mainElerea _ glossEvent = do
     
     -- Scenario 5: alternate between two active graphs.
     let makeDynamicCounter5 = do
-            counterA <- newCounter
-            counterB <- newCounter
-            let currentCounter = if_then_else <$> mode5
-                                              <*> counterA
-                                              <*> counterB
-            activeWithClock 0 click5 currentCounter
+            (passiveCounterA, activeCounterA) <- newCounter
+            (passiveCounterB, activeCounterB) <- newCounter
+            
+            let currentPassiveCounter = if_then_else <$> mode5
+                                                     <*> passiveCounterA
+                                                     <*> passiveCounterB
+            let currentActiveCounter = if_then_else <$> mode5
+                                                    <*> activeCounterA
+                                                    <*> activeCounterB
+            
+            lastActiveValue <- activeWithClock 0 click5 currentActiveCounter
+            let currentValue = if_then_else <$> mode5
+                                            <*> passiveCounterA
+                                            <*> passiveCounterB
+            
+            return (seqSignal lastActiveValue currentValue)
           where
-            newCounter :: SignalGen (ActiveSignal Int)
+            newCounter :: SignalGen (Signal Int, ActiveSignal Int)
             newCounter = do
               (count, setCount) <- execute $ external 0
-              return $ pure $ do
-                n <- snapshot count
-                let n' = n + 1
-                execute $ setCount n'
-                return n'
+              let activeCounter = pure $ do
+                    n <- snapshot count
+                    let n' = n + 1
+                    execute $ setCount n'
+                    return n'
+              return (count, activeCounter)
     dynamicCount5 <- makeDynamicCounter5
     
     
