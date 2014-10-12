@@ -10,7 +10,9 @@ cabal-version:       >=1.10
 executable sodium-example
   hs-source-dirs:      ., ../shared
   main-is:             Main.hs
-  build-depends:       base >=4.6 && <4.8
+                       -- require base <4.7 because sodium is broken
+                       -- on GHC 7.8, see issue #4
+  build-depends:       base >=4.6 && <4.7
                      , bool-extras >=0.2.0
                      , gloss >=1.7.8.1
                      , sodium >=0.10.0.0
