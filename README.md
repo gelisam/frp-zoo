@@ -22,7 +22,6 @@ library | classification | example app
 [drClickOn](https://hackage.haskell.org/package/drClickOn) | untested | —
 [DysFRP](https://hackage.haskell.org/package/DysFRP) | untested | —
 [grapefruit](https://hackage.haskell.org/package/grapefruit-frp) | untested | —
-[helm](https://hackage.haskell.org/package/helm) | untested | —
 [io-reactive](https://hackage.haskell.org/package/io-reactive) | untested | —
 [Moe](https://hackage.haskell.org/package/Moe) | untested | —
 [peakachu](https://hackage.haskell.org/package/peakachu) | untested | —
