@@ -12,6 +12,6 @@ executable elerea-example
   main-is:             Main.hs
   build-depends:       base >=4.6 && <4.8
                      , gloss >=1.7.8.1
-                     , elerea >=2.5.0
+                     , elerea >=2.6.0
   default-language:    Haskell2010
   ghc-options: -W -Wall
