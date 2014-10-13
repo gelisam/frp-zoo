@@ -19,11 +19,6 @@ import Buttons
 import GlossInterface
 
 
--- Definition
-period :: Double
-period = 1.0
-
-
 -- Utility
 accumHold :: 
     (Monoid e, Monad m) => 
@@ -33,14 +28,9 @@ accumHold x = (hold <|> pure x) . accumE (flip ($)) x
 
 -- Main body
 mainWire ::
-    Wire (Timed Double ()) () IO (G.Event) Picture
-mainWire = proc eSrc ->
+    Wire (Timed Float ()) () IO (Event G.Event) Picture
+mainWire = proc e ->
   do
-    -- `eSrc` will be updated at t = 0.0, 1.0, 2.0, ...
-    -- Event `e` will occur at t = 0.5, 1.5, ...
-    e <- for (period/2) . never --> periodic period -< eSrc
-
-
     click0 <- filterE ((Just Click ==) . filter0) -< e
     click5 <- filterE ((Just Click ==) . filter5) -< e
     click10 <- filterE ((Just Click ==) . filter10) -< e
@@ -71,7 +61,7 @@ mainWire = proc eSrc ->
     dynamic0 <- rSwitch counter -< (click0, newCounter0 <$ toggle0)
 
     --   `modes` can switch multiple state with inactive one suspended.
-    --   There's another solution using `kSwitch`.
+    --   There's another solution using `kSwitch`. See Yampa-example.
     dynamic5 <- 
         modes True (\case {True -> counter; False -> pure (-1)})
             -< (click5, mode5 <$ toggle5)
@@ -97,4 +87,3 @@ main =
         white
         30
         mainWire
-        period
