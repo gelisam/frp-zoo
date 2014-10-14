@@ -8,6 +8,7 @@ library | classification | example app
 :---:|:---:|:---:
 [elerea](https://hackage.haskell.org/package/elerea) | scenarios 0 and 5, higher-order, signals | [code](elerea-example/Main.hs)
 [euphoria](https://github.com/tsurucapital/euphoria) | scenario 0, higher-order, step signals, behaviours and events | [code](euphoria-example/Main.hs)
+[grapefruit](https://hackage.haskell.org/package/grapefruit-frp) | scenario 0, higher-order, step signals, behaviours and events | [code](grapefruit-example/Main.hs)
 [netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, higher-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, higher-order, behaviours and events | [code](reactive-banana-example/Main.hs)
@@ -21,7 +22,6 @@ library | classification | example app
 [Dflow](https://hackage.haskell.org/package/Dflow) | untested | —
 [drClickOn](https://hackage.haskell.org/package/drClickOn) | untested | —
 [DysFRP](https://hackage.haskell.org/package/DysFRP) | untested | —
-[grapefruit](https://hackage.haskell.org/package/grapefruit-frp) | untested | —
 [io-reactive](https://hackage.haskell.org/package/io-reactive) | untested | —
 [Moe](https://hackage.haskell.org/package/Moe) | untested | —
 [peakachu](https://hackage.haskell.org/package/peakachu) | untested | —
