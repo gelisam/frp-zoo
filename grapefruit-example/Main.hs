@@ -1,4 +1,4 @@
-{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE ScopedTypeVariables, TypeOperators #-}
 module Main where
 
 import Control.Applicative
@@ -86,18 +86,43 @@ mainGrapefruit _ glossEvent = picture
     count10 = S.scan 0 (\count () -> count + 1) click10
     
     
+    -- Part 2: dynamic version
+    
+    dynamicCount0 :: SSignal era Int
+    dynamicCount0 = unOSF $ currentCount `sfApp` click0
+      where
+        newCounter :: PolySignalFun (DSignal `Of` ()
+                                 :-> SSignal `Of` Int)
+        newCounter = PolySignalFun
+                   $ SSF $ \click ->
+                     OSF $ S.scan 0 (\count () -> count + 1) click
+        
+        resetCounter :: DSignal era (PolySignalFun (DSignal `Of` ()
+                                                :-> SSignal `Of` Int))
+        resetCounter = eachD toggle0 newCounter
+        
+        currentCounter :: SSignal era (PolySignalFun (DSignal `Of` ()
+                                                  :-> SSignal `Of` Int))
+        currentCounter = construct newCounter resetCounter
+        
+        currentCount :: SignalFun era (DSignal `Of` ()
+                                   :-> SSignal `Of` Int)
+        currentCount = polySwitch currentCounter
+    
+    
     -- Output
     
     minus1 :: SSignal era Int
     minus1 = pure (-1)
     
-    output0, output5, output10 :: SSignal era Int
-    output0  = if_then_else <$> mode0  <*> count0  <*> minus1
-    output5  = if_then_else <$> mode5  <*> count5  <*> minus1
-    output10 = if_then_else <$> mode10 <*> count10 <*> minus1
+    output0, dynamicOutput0, output5, output10 :: SSignal era Int
+    output0        = if_then_else <$> mode0  <*> count0         <*> minus1
+    dynamicOutput0 = if_then_else <$> mode0  <*> dynamicCount0  <*> minus1
+    output5        = if_then_else <$> mode5  <*> count5         <*> minus1
+    output10       = if_then_else <$> mode10 <*> count10        <*> minus1
     
     picture :: SSignal era Picture
-    picture = renderButtons <$> output0  <*> pure Nothing
+    picture = renderButtons <$> output0  <*> (Just <$> dynamicOutput0)
                             <*> output5  <*> pure Nothing
                             <*> output10 <*> pure Nothing
 
