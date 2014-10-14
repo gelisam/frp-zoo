@@ -58,32 +58,29 @@ mainGrapefruit _ glossEvent = picture
     mode5  = S.scan True (\mode () -> not mode) toggle5
     mode10 = S.scan True (\mode () -> not mode) toggle10
     
-    
-    modify0 :: DSignal era (Int -> Int)
-    modify0 = eachD toggle0 (const 0)
-      `union` eachD click0 (+1)
-    
-    updateState0 :: DSignal era (Int -> (Int, Int))
-    updateState0 = fmap (dup .) modify0
-      where
-        dup x = (x,x)
-    
-    updates0 :: DSignal era Int
-    updates0 = stateful 0 updateState0
-    
     count0 :: SSignal era Int
     count0 = construct 0 updates0
-    
-    
-    annotatedClick5 :: DSignal era Bool
-    annotatedClick5 = click5 #> mode5
-    
-    filteredClick5 :: DSignal era ()
-    filteredClick5 = replaceWith () (D.filter id annotatedClick5)
+      where
+        modify0 :: DSignal era (Int -> Int)
+        modify0 = eachD toggle0 (const 0)
+          `union` eachD click0 (+1)
+        
+        updateState0 :: DSignal era (Int -> (Int, Int))
+        updateState0 = fmap (dup .) modify0
+          where
+            dup x = (x,x)
+        
+        updates0 :: DSignal era Int
+        updates0 = stateful 0 updateState0
     
     count5 :: SSignal era Int
     count5  = S.scan 0 (\count () -> count + 1) filteredClick5
-    
+      where
+        annotatedClick5 :: DSignal era Bool
+        annotatedClick5 = click5 #> mode5
+        
+        filteredClick5 :: DSignal era ()
+        filteredClick5 = replaceWith () (D.filter id annotatedClick5)
     
     count10 :: SSignal era Int
     count10 = S.scan 0 (\count () -> count + 1) click10
