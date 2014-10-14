@@ -9,11 +9,11 @@ library | classification | example app
 [elerea](https://hackage.haskell.org/package/elerea) | scenarios 0 and 5, higher-order, signals | [code](elerea-example/Main.hs)
 [euphoria](https://github.com/tsurucapital/euphoria) | scenario 0, higher-order, step signals, behaviours and events | [code](euphoria-example/Main.hs)
 [grapefruit](https://hackage.haskell.org/package/grapefruit-frp) | scenario 0, higher-order, step signals, behaviours and events | [code](grapefruit-example/Main.hs)
-[netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, signals | [code](netwire-example/Main.hs)
+[netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, continuous, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, higher-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, higher-order, behaviours and events | [code](reactive-banana-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, higher-order, behaviours and events | [code](sodium-example/Main.hs)
-[Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, signals | [code](Yampa-example/Main.hs)
+[Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, continuous, signals | [code](Yampa-example/Main.hs)
 [Animas](https://hackage.haskell.org/package/Animas) | untested | —
 [artery](https://hackage.haskell.org/package/artery) | untested | —
 [bot](https://hackage.haskell.org/package/bot) | untested | —
