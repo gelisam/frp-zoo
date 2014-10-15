@@ -29,12 +29,28 @@ playYampa display color frequency network =
             if changed then vPic `writeIORef` pic else return ()
             return False)
         network
+    
+    _ <- react handle (infts, Just NoEvent)
 
+    -- Since `react` requires nonzero time intervals,
+    -- we pass infinitesimal time intervals and accumulate them on
+    -- the variable `t`. Then every frame `delta` is corrected by `t`.
     G.playIO
         display
         color
         frequency
-        ()
+        infts -- initial t. This is for initial step
         (const $ readIORef vPic)
-        (\e _ -> react handle (1.0, Just (Event e)) >> return ())
-        (\_ w -> return w)
+        (\e t -> react handle (infts, Just (Event e)) >> return (t+infts))
+        (\delta t ->
+            let 
+                delta' = realToFrac delta - t
+              in
+                if delta' > 0
+                  then do
+                    _ <- react handle (delta', Just NoEvent)
+                    return 0.0
+                  else
+                    return (-delta'))
+  where
+    infts = 0.01 / fromIntegral frequency
