@@ -22,7 +22,6 @@ library | classification | example app
 [Dflow](https://hackage.haskell.org/package/Dflow) | untested | —
 [drClickOn](https://hackage.haskell.org/package/drClickOn) | untested | —
 [DysFRP](https://hackage.haskell.org/package/DysFRP) | untested | —
-[io-reactive](https://hackage.haskell.org/package/io-reactive) | untested | —
 [Moe](https://hackage.haskell.org/package/Moe) | untested | —
 [peakachu](https://hackage.haskell.org/package/peakachu) | untested | —
 [reaction-logic](https://hackage.haskell.org/package/reaction-logic) | untested | —
