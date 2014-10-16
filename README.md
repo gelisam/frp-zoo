@@ -27,7 +27,6 @@ library | classification | example app
 [reaction-logic](https://hackage.haskell.org/package/reaction-logic) | untested | —
 [reactive](https://hackage.haskell.org/package/reactive) | untested | —
 [reactive-bacon](https://hackage.haskell.org/package/reactive-bacon) | untested | —
-[reactive-thread](https://hackage.haskell.org/package/reactive-thread) | untested | —
 [reenact](https://hackage.haskell.org/package/reenact) | untested | —
 [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp) | untested | —
 [RxHaskell](https://hackage.haskell.org/package/RxHaskell) | untested | —
