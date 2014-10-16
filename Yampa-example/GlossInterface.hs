@@ -4,12 +4,10 @@ import Prelude hiding (id, (.))
 
 import FRP.Yampa
 
-import Graphics.Gloss (Color, Display, Picture)
+import Graphics.Gloss (Color, Display, Picture(Blank))
 import qualified Graphics.Gloss.Interface.IO.Game as G
 
 import Data.IORef
-
-import Buttons
 
 playYampa :: 
     Display ->
@@ -20,7 +18,7 @@ playYampa ::
 
 playYampa display color frequency network = 
   do
-    vPic <- newIORef $ renderButtons 0 Nothing 0 Nothing 0 Nothing
+    vPic <- newIORef Blank
 
     handle <- reactInit 
         (return NoEvent)
