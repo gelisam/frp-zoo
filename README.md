@@ -34,7 +34,6 @@ library | classification | example app
 [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp) | untested | —
 [RxHaskell](https://hackage.haskell.org/package/RxHaskell) | untested | —
 [spice](https://hackage.haskell.org/package/spice) | untested | —
-[wxFruit](https://hackage.haskell.org/package/wxFruit) | untested | —
 
 For comparison, here are a few non-FRP implementations of the same small program.
 
