@@ -25,7 +25,7 @@ library | classification | example app
 [Moe](https://hackage.haskell.org/package/Moe) | untested | —
 [peakachu](https://hackage.haskell.org/package/peakachu) | untested | —
 [reaction-logic](https://hackage.haskell.org/package/reaction-logic) | untested | —
-[reactive](https://hackage.haskell.org/package/reactive) | untested | —
+[reactive](https://hackage.haskell.org/package/reactive) | unmaintained | —
 [reactive-bacon](https://hackage.haskell.org/package/reactive-bacon) | untested | —
 [reenact](https://hackage.haskell.org/package/reenact) | untested | —
 [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp) | untested | —
