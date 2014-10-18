@@ -3,6 +3,7 @@ module Main where
 
 import Control.Applicative
 import Control.Monad
+import Data.Bool.Extras
 import Data.IORef
 import Graphics.Gloss hiding (pictures)
 import Reactive.Bacon
@@ -72,6 +73,12 @@ switchP baseInitial baseProperty newInitial newProperty changeRequest = do
         property <- newProperty x
         changesP property
 
+executeE :: EventStream (IO (EventStream a)) -> IO (EventStream a)
+executeE = switchE id
+
+seqP :: Property a -> Property b -> Property b
+seqP = combineWithP seq
+
 
 -- FRP network
 
@@ -112,7 +119,6 @@ mainBacon _ glossEvent = do
     
     -- Part 2: dynamic version
     
-    -- Scenario 0: generate new graphs and switch to the latest one.
     let makeDynamicCounter0 = do
             firstCounter <- newCounter
             resetRequest <- filterP False (not <$> mode0) toggle0
@@ -124,6 +130,35 @@ mainBacon _ glossEvent = do
             newCounter = count click0
     dynamicCount0 <- makeDynamicCounter0
     
+    let makeDynamicCounter5 = do
+            (passiveCounterA, activeEventA) <- newCounter "A"
+            (passiveCounterB, activeEventB) <- newCounter "B"
+            let passiveCounter = if_then_else <$> mode5 <*> passiveCounterA <*> passiveCounterB
+            
+            toggleRequest <- changesP mode5
+            baseActiveEvents <- takeUntilE toggleRequest activeEventA
+            laterActiveEvents <- switchE (return . bool activeEventB activeEventA) toggleRequest
+            allActiveEvents <- baseActiveEvents `mergeE` laterActiveEvents
+            
+            activeProperty <- fromEventSourceWithStartValue (Just ()) allActiveEvents
+            let activatedCounter = activeProperty `seqP` passiveCounter
+            
+            return activatedCounter
+          where
+            newCounter :: String -> IO (Property Int, EventStream ())
+            newCounter name = do
+                (localEvent, pushLocalEvent) <- newPushStream
+                
+                passiveCounter <- count localEvent
+                
+                let triggerIfActive () = do
+                      pushLocalEvent (Next ())
+                      return neverE
+                activeEvent <- switchE triggerIfActive click5
+                
+                return (passiveCounter, activeEvent)
+    dynamicCount5 <- makeDynamicCounter5
+    
     
     -- Output
     
@@ -131,10 +166,11 @@ mainBacon _ glossEvent = do
     let output0        = if_then_else <$> mode0  <*> count0        <*> minus1
     let dynamicOutput0 = if_then_else <$> mode0  <*> dynamicCount0 <*> minus1
     let output5        = if_then_else <$> mode5  <*> count5        <*> minus1
+    let dynamicOutput5 = if_then_else <$> mode5  <*> dynamicCount5 <*> minus1
     let output10       = if_then_else <$> mode10 <*> count10       <*> minus1
     
     return $ renderButtons <$> output0  <*> (Just <$> dynamicOutput0)
-                           <*> output5  <*> pure Nothing
+                           <*> output5  <*> (Just <$> dynamicOutput5)
                            <*> output10 <*> pure Nothing
 
     
