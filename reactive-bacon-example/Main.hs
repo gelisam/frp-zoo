@@ -73,9 +73,6 @@ switchP baseInitial baseProperty newInitial newProperty changeRequest = do
         property <- newProperty x
         changesP property
 
-executeE :: EventStream (IO (EventStream a)) -> IO (EventStream a)
-executeE = switchE id
-
 seqP :: Property a -> Property b -> Property b
 seqP = combineWithP seq
 
