@@ -1,3 +1,4 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 module Main where
 
 import Control.Applicative
@@ -48,6 +49,29 @@ filterP initial propSource eventSource = do
         then sink event
         else return More
 
+switchP :: forall s a b. EventSource s
+        => b
+        -> Property b
+        -> (a -> b)
+        -> (a -> IO (Property b))
+        -> s a
+        -> IO (Property b)
+switchP baseInitial baseProperty newInitial newProperty changeRequest = do
+    baseChanges    <- changesP baseProperty
+    initialChanges <- takeUntilE changeRequest baseChanges
+    
+    transitionChanges     <- mapE newInitial changeRequest
+    postTransitionChanges <- switchE newChanges changeRequest
+    laterChanges          <- transitionChanges `mergeE` postTransitionChanges
+    
+    allChanges <- initialChanges `mergeE` laterChanges
+    fromEventSourceWithStartValue (Just baseInitial) allChanges
+  where
+    newChanges :: a -> IO (EventStream b)
+    newChanges x = do
+        property <- newProperty x
+        changesP property
+
 
 -- FRP network
 
@@ -86,14 +110,30 @@ mainBacon _ glossEvent = do
     count10 <- count click10
     
     
+    -- Part 2: dynamic version
+    
+    -- Scenario 0: generate new graphs and switch to the latest one.
+    let makeDynamicCounter0 = do
+            firstCounter <- newCounter
+            resetRequest <- filterP False (not <$> mode0) toggle0
+            switchP 0 firstCounter
+                    (const 0) (const newCounter)
+                    resetRequest
+          where
+            newCounter :: IO (Property Int)
+            newCounter = count click0
+    dynamicCount0 <- makeDynamicCounter0
+    
+    
     -- Output
     
     let minus1 = pure (-1)
-    let output0  = if_then_else <$> mode0  <*> count0  <*> minus1
-    let output5  = if_then_else <$> mode5  <*> count5  <*> minus1
-    let output10 = if_then_else <$> mode10 <*> count10 <*> minus1
+    let output0        = if_then_else <$> mode0  <*> count0        <*> minus1
+    let dynamicOutput0 = if_then_else <$> mode0  <*> dynamicCount0 <*> minus1
+    let output5        = if_then_else <$> mode5  <*> count5        <*> minus1
+    let output10       = if_then_else <$> mode10 <*> count10       <*> minus1
     
-    return $ renderButtons <$> output0  <*> pure Nothing
+    return $ renderButtons <$> output0  <*> (Just <$> dynamicOutput0)
                            <*> output5  <*> pure Nothing
                            <*> output10 <*> pure Nothing
 
