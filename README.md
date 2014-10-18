@@ -11,6 +11,7 @@ library | classification | example app
 [grapefruit](https://hackage.haskell.org/package/grapefruit-frp) | scenario 0, higher-order, step signals, behaviours and events | [code](grapefruit-example/Main.hs)
 [netwire](https://hackage.haskell.org/package/netwire) | all three scenarios, arrowized, continuous, signals | [code](netwire-example/Main.hs)
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, higher-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
+[reactive-bacon](https://hackage.haskell.org/package/reactive-bacon) | scenarios 0 and 5, asynchronous data flow, behaviours and events | [code](reactive-bacon-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, higher-order, behaviours and events | [code](reactive-banana-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, higher-order, behaviours and events | [code](sodium-example/Main.hs)
 [Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, continuous, signals | [code](Yampa-example/Main.hs)
@@ -26,7 +27,6 @@ library | classification | example app
 [peakachu](https://hackage.haskell.org/package/peakachu) | untested | —
 [reaction-logic](https://hackage.haskell.org/package/reaction-logic) | untested | —
 [reactive](https://hackage.haskell.org/package/reactive) | unmaintained | —
-[reactive-bacon](https://hackage.haskell.org/package/reactive-bacon) | untested | —
 [reenact](https://hackage.haskell.org/package/reenact) | untested | —
 [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp) | untested | —
 [RxHaskell](https://hackage.haskell.org/package/RxHaskell) | untested | —
