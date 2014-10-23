@@ -15,10 +15,11 @@ import Control.Arrow
 
 import Graphics.Gloss
 
+import Disposable
 import Signal
 import Signal.Channel (newChannel)
 import Signal.Subscriber
-import Signal.Operators (filter)
+import Signal.Operators
 
 import Buttons
 import GlossInterface
@@ -45,21 +46,44 @@ newAccum i =
     return (sscOutput, sigOutput)
 
 
+leadedBy ::
+    Scheduler s =>
+    v -> Signal s v -> Signal s v
+leadedBy x sig =
+    signal $ \ssc ->
+      do
+        send ssc (NextEvent x)
+        subscribe sig ssc
+
+withDisposable ::
+    Scheduler s =>
+    Disposable -> Signal s v -> Signal s v
+withDisposable dp1 sig = signal $ \ssc ->
+  do
+    dset <- liftIO $ newDisposableSet
+    dp2 <- subscribe sig ssc
+    liftIO $ addDisposable dset dp1
+    liftIO $ addDisposable dset dp2
+    liftIO $ toDisposable dset
+
 data FormStatus = FormStatus {
     fmOutput0 :: Int,
+    fmDynamic0 :: Maybe Int,
     fmOutput5 :: Int,
-    fmOutput10 :: Int
+    fmDynamic5 :: Maybe Int,
+    fmOutput10 :: Int,
+    fmDynamic10 :: Maybe Int
 }
 
 initFormStatus :: FormStatus
-initFormStatus = FormStatus 0 0 0
+initFormStatus = FormStatus 0 Nothing 0 Nothing 0 Nothing
 
 buttonsFromForm :: FormStatus -> Picture
 buttonsFromForm FormStatus{..} =
     renderButtons 
-        fmOutput0 Nothing
-        fmOutput5 Nothing
-        fmOutput10 Nothing
+        fmOutput0 fmDynamic0
+        fmOutput5 fmDynamic5
+        fmOutput10 fmDynamic10
 
 outputFromPair :: (Int, Bool) -> Int
 outputFromPair (count, mode) = if mode then count else -1
@@ -84,6 +108,9 @@ mainRx _ e =
         toggle5 = filter e ((Just Toggle ==) . filter5)
         toggle10 = filter e ((Just Toggle ==) . filter10)
 
+    -- 
+    -- Part 1: static implementations
+    --
     (pair0s, pair0) <- liftIO $ newAccum (0, True)
 
     _ <- subscribe (first (+1) <$ click0) pair0s
@@ -106,11 +133,31 @@ mainRx _ e =
 
     _ <- subscribe ((\pair f -> f { fmOutput10 = outputFromPair pair}) <$> pair10) fms
 
+    --
+    -- Part 2: dynamic implementation
+    --
+    (mode0s, mode0) <- liftIO $ newAccum True
+    _ <- subscribe (not <$ toggle0) mode0s
+    let 
+        dyn0 = signal $ \ssc -> 
+          do
+            mode0 >>: \ev ->
+              do
+                case ev
+                  of
+                    NextEvent True ->
+                      do
+                        (count0s, count0) <- liftIO $ newAccum 0
+                        dp <- subscribe ((+1) <$ click0) count0s 
+                        send ssc $ NextEvent (withDisposable dp $ leadedBy 0 count0)
+                    NextEvent False -> send ssc $ NextEvent (leadedBy (-1) never)
+                    ErrorEvent expection -> send ssc (ErrorEvent expection)
+                    CompletedEvent -> send ssc CompletedEvent
+                              
+    _ <- subscribe　((\out f -> f { fmDynamic0 = Just out }) <$> switch dyn0) fms
     
-    return $ signal $ \ssc ->
-      do
-        send ssc $ NextEvent $ renderButtons 0 Nothing 0 Nothing 0 Nothing
-        subscribe (buttonsFromForm <$> fm) ssc
+    return $ leadedBy (renderButtons 0 Nothing 0 Nothing 0 Nothing) $
+        buttonsFromForm <$> fm
 
 
 main :: IO ()
