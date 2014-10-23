@@ -15,6 +15,7 @@ library | classification | example app
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, higher-order, behaviours and events | [code](reactive-banana-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, higher-order, behaviours and events | [code](sodium-example/Main.hs)
 [Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, continuous, signals | [code](Yampa-example/Main.hs)
+[RxHaskell](https://hackage.haskell.org/package/RxHaskell) | scenario 0, asynchronous data flow, signals | [code](RxHaskell-example/Main.hs)
 [Animas](https://hackage.haskell.org/package/Animas) | untested | —
 [artery](https://hackage.haskell.org/package/artery) | untested | —
 [bot](https://hackage.haskell.org/package/bot) | untested | —
@@ -29,7 +30,6 @@ library | classification | example app
 [reactive](https://hackage.haskell.org/package/reactive) | unmaintained | —
 [reenact](https://hackage.haskell.org/package/reenact) | untested | —
 [rsagl-frp](https://hackage.haskell.org/package/rsagl-frp) | untested | —
-[RxHaskell](https://hackage.haskell.org/package/RxHaskell) | untested | —
 
 For comparison, here are a few non-FRP implementations of the same small program.
 
