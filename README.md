@@ -13,9 +13,9 @@ library | classification | example app
 [ordrea](https://hackage.haskell.org/package/ordrea) | scenario 0, higher-order, step signals, behaviours and events | [code](ordrea-example/Main.hs)
 [reactive-bacon](https://hackage.haskell.org/package/reactive-bacon) | scenarios 0 and 5, asynchronous data flow, behaviours and events | [code](reactive-bacon-example/Main.hs)
 [reactive-banana](https://hackage.haskell.org/package/reactive-banana) | scenario 0, higher-order, behaviours and events | [code](reactive-banana-example/Main.hs)
+[RxHaskell](https://hackage.haskell.org/package/RxHaskell) | scenario 0, asynchronous data flow, signals | [code](RxHaskell-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, higher-order, behaviours and events | [code](sodium-example/Main.hs)
 [Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, continuous, signals | [code](Yampa-example/Main.hs)
-[RxHaskell](https://hackage.haskell.org/package/RxHaskell) | scenario 0, asynchronous data flow, signals | [code](RxHaskell-example/Main.hs)
 [Animas](https://hackage.haskell.org/package/Animas) | untested | —
 [artery](https://hackage.haskell.org/package/artery) | untested | —
 [bot](https://hackage.haskell.org/package/bot) | untested | —
