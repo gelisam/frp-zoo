@@ -12,6 +12,6 @@ executable grapefruit-example
   main-is:             Main.hs
   build-depends:       base
                      , gloss >=1.7.8.1
-                     , grapefruit-frp
+                     , grapefruit-frp >=0.1.0.3
   default-language:    Haskell2010
   ghc-options: -W -Wall
