@@ -1,7 +1,7 @@
 module Main where
 
 import Control.Applicative
-import Data.Bool.Extras
+import Data.Bool
 import Data.Monoid
 import FRP.Sodium
 import Graphics.Gloss.Interface.IO.Game hiding (Event)

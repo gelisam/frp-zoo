@@ -3,7 +3,7 @@ module Main where
 
 import Control.Applicative
 import Control.Monad
-import Data.Bool.Extras
+import Data.Bool
 import Data.IORef
 import Graphics.Gloss hiding (pictures)
 import Reactive.Bacon
