@@ -11,6 +11,7 @@ executable callback-example
   hs-source-dirs:      ., ../shared
   main-is:             Main.hs
   build-depends:       base >=4.6 && <4.8
-                     , gloss >=1.7.8.1
+                     , gloss >=1.9.2.1
+                     , gloss-algorithms >=1.9.2.1
   default-language:    Haskell2010
   ghc-options: -W -Wall
