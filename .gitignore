@@ -2,3 +2,4 @@ cabal.sandbox.config
 .cabal-sandbox
 .ghci
 dist
+*.sw[a-z]
