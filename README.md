@@ -17,7 +17,7 @@ library | classification | example app
 [reflex](https://hackage.haskell.org/package/reflex) | scenarios 0 and 5, higher-order, behaviours and events | [code](reflex-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, higher-order, behaviours and events | [code](sodium-example/Main.hs)
 [Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, continuous, signals | [code](Yampa-example/Main.hs)
-[reactive](https://hackage.haskell.org/package/reactive) | unmaintained | —
+[reactive](https://hackage.haskell.org/package/reactive) |  Conal Elliott's original FRP implementation, unmaintained | —
 
 For comparison, here are a few non-FRP implementations of the same small program.
 
