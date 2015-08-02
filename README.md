@@ -17,20 +17,7 @@ library | classification | example app
 [reflex](https://hackage.haskell.org/package/reflex) | scenarios 0 and 5, higher-order, behaviours and events | [code](reflex-example/Main.hs)
 [sodium](https://hackage.haskell.org/package/sodium) | scenarios 0 and 5, higher-order, behaviours and events | [code](sodium-example/Main.hs)
 [Yampa](https://hackage.haskell.org/package/Yampa) | scenarios 0 and 5, arrowized, continuous, signals | [code](Yampa-example/Main.hs)
-[Animas](https://hackage.haskell.org/package/Animas) | untested | —
-[artery](https://hackage.haskell.org/package/artery) | untested | —
-[bot](https://hackage.haskell.org/package/bot) | untested | —
-[buster](https://hackage.haskell.org/package/buster) | untested | —
-[definitive-reactive](https://hackage.haskell.org/package/definitive-reactive) | untested | —
-[Dflow](https://hackage.haskell.org/package/Dflow) | untested | —
-[drClickOn](https://hackage.haskell.org/package/drClickOn) | untested | —
-[DysFRP](https://hackage.haskell.org/package/DysFRP) | untested | —
-[Moe](https://hackage.haskell.org/package/Moe) | untested | —
-[peakachu](https://hackage.haskell.org/package/peakachu) | untested | —
-[reaction-logic](https://hackage.haskell.org/package/reaction-logic) | untested | —
 [reactive](https://hackage.haskell.org/package/reactive) | unmaintained | —
-[reenact](https://hackage.haskell.org/package/reenact) | untested | —
-[rsagl-frp](https://hackage.haskell.org/package/rsagl-frp) | untested | —
 
 For comparison, here are a few non-FRP implementations of the same small program.
 
