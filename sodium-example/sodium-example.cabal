@@ -10,7 +10,7 @@ cabal-version:       >=1.10
 executable sodium-example
   hs-source-dirs:      ., ../shared
   main-is:             Main.hs
-  build-depends:       base >=4.7 && <4.8
+  build-depends:       base >=4.7 && <4.9
                      , gloss >=1.9.2.1
                      , gloss-algorithms >=1.9.2.1
                      , sodium >=0.10.0.0
