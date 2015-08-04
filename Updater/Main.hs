@@ -2,7 +2,7 @@ module Main where
 
 import Graphics.Gloss.Interface.IO.Game
 
-import Examples.FRPZoo.Button
+import Buttons
 
 import Updater
 import Control.Applicative
