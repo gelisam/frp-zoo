@@ -1,0 +1,18 @@
+name:                Updater-example
+version:             0.1.0.0
+license:             PublicDomain
+author:              Silvio Frischknecht
+maintainer:          silvio.frischi@gmail.com
+category:            FRP
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable Updater-example
+  hs-source-dirs:      ., ../shared
+  main-is:             Main.hs
+  build-depends:       base >=4.6 && <4.9
+                     , gloss >=1.9.2.1
+                     , gloss-algorithms >=1.9.2.1
+                     , Updater >= 0.2
+  default-language:    Haskell2010
+  ghc-options: -W -Wall
