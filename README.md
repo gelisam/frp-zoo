@@ -26,6 +26,7 @@ library | classification | example app
 — | callbacks | [code](callback-example/Main.hs)
 — | pure functions | [code](gloss-example/Main.hs)
 [objective](https://hackage.haskell.org/package/objective) | scenario 0, push-pull automatons | [code](objective-example/Main.hs)
+[auto](https://hackage.haskell.org/package/auto) | scenario 0 and 10, stream processing DSL with arrow notations | [code](auto-example/Main.hs)
 
 ## The TodoMVC of FRP libraries
 
