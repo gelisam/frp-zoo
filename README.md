@@ -6,7 +6,7 @@ Interested in trying FRP, but overwhelmed by the number of FRP libraries to choo
 
 library | classification | example app
 :---:|:---:|:---:
-[auto](https://hackage.haskell.org/package/auto) | scenario 0 and 10, arrowized, signals | [code](auto-example/Main.hs)
+[auto](https://hackage.haskell.org/package/auto) | scenarios 0 and 10, arrowized, signals | [code](auto-example/Main.hs)
 [elerea](https://hackage.haskell.org/package/elerea) | scenarios 0 and 5, higher-order, signals | [code](elerea-example/Main.hs)
 [euphoria](https://hackage.haskell.org/package/euphoria) | scenario 0, higher-order, step signals, behaviours and events | [code](euphoria-example/Main.hs)
 [FRPNow](https://hackage.haskell.org/package/frpnow) | scenario 0, higher-order, behaviours and events | [code](frpnow-example/Main.hs)
