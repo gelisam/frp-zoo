@@ -1,26 +1,24 @@
-{-# LANGUAGE Arrows #-}
 module Main where
 
 import Graphics.Gloss
 import qualified Graphics.Gloss.Interface.IO.Game as G
-import Control.Varying
 import Buttons
+import Control.Varying
 
 main :: IO ()
-main = G.playIO (InWindow "Varying Example" (320, 240) (800, 200))
-                white 30
+main = G.playIO (InWindow "Varying Example" (320, 240) (800, 200)) white 30
                 (renderButtons 0 (Just 0) 0 (Just 0) 0 (Just 0), network)
-                (return . fst)
-                (\e (_, network') -> runVar network' e)
+                (return . fst) (\e (_, network') -> runVar network' e)
                 (const $ return)
 
 network :: Monad m => Var m G.Event Picture
-network = renderButtons <$>           negWhenUntoggled static0 (toggled filter0)
-                        <*> (Just <$> negWhenUntoggled dyn0    (toggled filter0))
-                        <*>           negWhenUntoggled static5 (toggled filter5)
-                        <*> (Just <$> negWhenUntoggled dyn5    (toggled filter5))
-                        <*>           negWhenUntoggled static10(toggled filter10)
-                        <*> (Just <$> negWhenUntoggled dyn10   (toggled filter10))
+network =
+    renderButtons <$>           negWhenUntoggled static0 (toggled filter0)
+                  <*> (Just <$> negWhenUntoggled dyn0    (toggled filter0))
+                  <*>           negWhenUntoggled static5 (toggled filter5)
+                  <*> (Just <$> negWhenUntoggled dyn5    (toggled filter5))
+                  <*>           negWhenUntoggled static10(toggled filter10)
+                  <*> (Just <$> negWhenUntoggled dyn10   (toggled filter10))
 
 -- | Simply produces "-1" if the second signal produces False, or the value
 -- of the first signal.
@@ -41,7 +39,8 @@ static5 = events ~> collectWith append ~> var (foldl (flip ($)) 0)
           events       = (<$) <$> toggled filter5 <*> clicked filter5
 
 static10 :: Monad m => Var m G.Event Int
-static10 = clicked filter10 ~> accumulate (\n e -> if isEvent e then n+1 else n) 0
+static10 = clicked filter10 ~> accumulate (\n e -> if isEvent e then n+1 else n)
+                                          0
 --------------------------------------------------------------------------------
 -- Dynamic
 --------------------------------------------------------------------------------
@@ -65,8 +64,8 @@ clicked :: Monad m => (G.Event -> Maybe ButtonClick) -> Var m G.Event (Event ())
 clicked f = var ((== Just Click)  . f) ~> onTrue
 
 toggled :: Monad m => (G.Event -> Maybe ButtonClick) -> Var m G.Event Bool
-toggled f = toggle f ~> toggleMode
-    where toggleMode = accumulate (\on e -> if isEvent e then not on else on) True
+toggled f = toggle f ~> accumulate (\on e -> if isEvent e then not on else on)
+                                   True
 
 toggle :: Monad m => (G.Event -> Maybe ButtonClick) -> Var m G.Event (Event ())
 toggle f = var ((== Just Toggle) . f)  ~> onTrue
