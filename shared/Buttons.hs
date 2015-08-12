@@ -64,6 +64,7 @@ cornerCoords ex = [(w,n), (e,n), (e,s), (w,s)]
 cornerPoints :: Extent -> [Point]
 cornerPoints = map coord2point . cornerCoords
 
+
 -- Button events
 
 data ButtonClick = Click | Toggle deriving (Show, Eq)

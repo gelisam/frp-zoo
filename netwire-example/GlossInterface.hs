@@ -11,15 +11,15 @@ import Control.Wire.Unsafe.Event (Event(Event, NoEvent))
 
 
 playNetwire ::
-    Display ->
+    Display -> 
     Color ->
     Int ->
-    Wire (Timed Float ()) a IO (Event G.Event) Picture ->
+    Wire (Timed Float ()) a IO (Event G.Event) Picture -> 
     IO ()
 playNetwire display color frequency network =
   do
      -- Calculate initial step
-    world0 <- step 0.0 (network, Blank) NoEvent
+    world0 <- step 0.0 (network, Blank) NoEvent 
 
     -- Main body
     G.playIO
