@@ -1,7 +1,7 @@
 module Main where
 
 import Control.Applicative
-import Control.DysFrp
+import Control.DysFRP
 import Graphics.Gloss.Interface.IO.Game hiding (Event)
 
 import Buttons
@@ -28,10 +28,42 @@ eachE = flip replaceWith
 
 mainDysFRP :: Event Float
            -> Event InputEvent
-           -> Behavior Picture
-mainDysFRP _ glossEvent = picture
-  where
+           -> BehaviorGen Picture
+mainDysFRP _ glossEvent = do
     -- Part 1: static version
+    --
+    mode0   <- accumB True $ constE not toggle0
+    mode5   <- accumB True $ constE not toggle5
+    mode10  <- accumB True $ constE not toggle10
+
+    count0  <- accumB 0 $ constE (+1) click0 `appendE` constE (const 0) toggle0
+    count5  <- accumB 0 $ whenE mode5 $ constE (+1) click5
+    count10 <- accumB 0 $ constE (+1) click10
+
+    let output0        = if_then_else <$> mode0  <*> count0        <*> minus1
+    let output5        = if_then_else <$> mode5  <*> count5        <*> minus1
+    let output10       = if_then_else <$> mode10 <*> count10       <*> minus1
+    
+    let counterB click = accumB 0 $ constE (+1) click
+
+    -- Part 2: dynamic version
+    -- scenario 0: new counter created each time
+    initCount0 <- counterB click0
+    dynamicCount0 <- switchB initCount0 $ 
+        genToE (\b -> if b then -1 else counterB click0) $
+	snapshotE mode0 $ toggle0
+    
+    -- scenario 10: re-using the first counter
+    initCount10 <- counterB click10
+    dynamicCount10 <- switchB initCount10 $ 
+        fmap (\b -> if b then -1 else initCount10) $
+	snapshotE mode10 $ toggle10
+
+    return $ renderButtons <$> output0  <*> (Just <$> dynamicCount0)
+                           <*> output5  <*> pure Nothing
+                           <*> output10 <*> (Just <$> dynamicCount10)
+  where
+    minus1 = constB (-1)
     
     -- Input
     
@@ -45,57 +77,6 @@ mainDysFRP _ glossEvent = picture
     toggle5  = filterEq (Just Toggle) $ filter5  <$> glossEvent
     toggle10 = filterEq (Just Toggle) $ filter10 <$> glossEvent
     
-    
-    -- Behaviour
-    
-    mode0, mode5, mode10 :: Behavior Bool
-    mode0  = accumB True (eachE toggle0 not)
-    mode5  = accumB True (eachE toggle5  not)
-    mode10 = accumB True (eachE toggle10 not)
-    
-    count0, count5, count10 :: Behavior Int
-    count0  = accumB 0 $ eachE toggle0 (const 0)
-                 `union` eachE click0 (+1)
-    count5  = accumB 0 $ whenE mode5
-                       $ eachE click5 (+1)
-    count10 = accumB 0 $ eachE click10 (+1)
-    
-    
-    -- -- Part 2: dynamic version
-    -- -- (in a separate function due to scoping constraints)
-    -- 
-    -- go :: AnyMoment Event () -> Moment (Behavior Picture)
-    -- go resetClick0 = return picture
-    --   where
-    --     resetRequest :: Event ()
-    --     resetRequest = whenE (not <$> mode0) toggle0
-    --     
-    --     newCount0 :: AnyMoment Behavior Int
-    --     newCount0 = anyMoment $ do
-    --         recentClick0 <- now resetClick0
-    --         return $ accumB 0 (eachE recentClick0 (+1))
-    --     
-    --     dynamicCount0 :: Behavior Int
-    --     dynamicCount0 = switchB count0 (eachE resetRequest newCount0)
-        
-        
-    -- Output
-    
-    minus1 :: Behavior Int
-    minus1 = pure (-1)
-    
-    output0, dynamicOutput0, output5, output10 :: Behavior Int
-    output0        = if_then_else <$> mode0  <*> count0        <*> minus1
-    dynamicOutput0 = if_then_else <$> mode0  <*> dynamicCount0 <*> minus1
-    output5        = if_then_else <$> mode5  <*> count5        <*> minus1
-    output10       = if_then_else <$> mode10 <*> count10       <*> minus1
-    
-    picture :: Behavior Picture
-    picture = renderButtons <$> output0  <*> (Just <$> dynamicOutput0)
-                            <*> output5  <*> pure Nothing
-                            <*> output10 <*> pure Nothing
-
-
 -- Gloss event loop
 
 main :: IO ()

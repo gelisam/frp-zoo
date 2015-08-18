@@ -11,13 +11,13 @@ playDysFRP
   :: Display
   -> Color
   -> Int
-  -> (Event Float -> Event InputEvent -> Behavior Picture)
+  -> (Event Float -> Event InputEvent -> BehaviorGen Picture)
   -> IO ()
 playDysFRP display color frequency network = do
     (fireTickEvent, tickEvent) <- mkE
     (fireInputEvent, inputEvent) <- mkE
     
-    let picture = network tickEvent inputEvent
+    picture <- runBehavior $ network tickEvent inputEvent
     
     G.playIO display
              color
