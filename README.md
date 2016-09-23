@@ -2,7 +2,7 @@
 
 # FRP Zoo
 
-Interested in trying FRP, but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository contains several implementations of the same small program, to give you a taste of what each library looks like.
+Interested in trying FRP (Functional Reactive Programming), but overwhelmed by the number of FRP libraries to choose from? To help you with this choice, this repository contains several implementations of the same small program, to give you a taste of what each library looks like.
 
 library | classification | example app
 :---:|:---:|:---:
