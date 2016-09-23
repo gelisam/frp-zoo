@@ -100,7 +100,7 @@ Evan's presentation classifies FRP libraries into four categories according to t
 * Events and behaviours: an FRP library in which there are two kinds of reactive objects: behaviours hold a value at every point in time, while events only hold values when the event they represent occurs.
 * Signals: an FRP library in which all reactive values hold a value at every point in time. Typically, events are represented via `Maybe`.
 * Step signals: a separate representation for signals whose value only changes at specific points in time, typically when an event occurs.
-* Continuous: an FRP library in the style of Conal Elliott, meaning that signals are functions from time to values. This built-in notion of time allows interpolation between values, and other time-based transformations.
+* Continuous: an FRP library [in the style of Conal Elliott](https://github.com/conal/talk-2015-essence-and-origins-of-frp#readme), meaning that signals are functions from time to values. This built-in notion of time allows interpolation between values, and other time-based transformations.
 
 
 ## Contributing
