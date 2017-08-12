@@ -1,4 +1,4 @@
-name:                gloss-example
+name:                pure-example
 version:             0.1.0.0
 license:             PublicDomain
 author:              Samuel Gélineau
@@ -7,7 +7,7 @@ category:            FRP
 build-type:          Simple
 cabal-version:       >=1.10
 
-executable gloss-example
+executable pure-example
   hs-source-dirs:      .
   main-is:             Main.hs
   build-depends:       base
