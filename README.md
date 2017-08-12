@@ -49,7 +49,7 @@ Evan Czaplicki gave an excellent [presentation about the different categories of
 
 Which number is displayed now? 0, because the new click counter hasn't received any click yet? 5, because the clicks did not reach the click counter while it was outside the graph? 10, because equational reasoning somehow dictates it?
 
-For our toy program, we implement all three scenarios.
+The answer should not depend on the FRP library we choose, but on the behaviour we desire for our application! Thankfully, while each library gives a single answer for the above sequence of events, it is always possible to obtain the other outcomes using a different sequence of events. Our toy program will implement all three scenarios, but not necessarily by changing the underlying graph as described above.
 
 ## Specification
 
