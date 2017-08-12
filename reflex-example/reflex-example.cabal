@@ -10,13 +10,13 @@ cabal-version:       >=1.10
 executable reflex-example
   hs-source-dirs:      ., ../shared
   main-is:             Main.hs
-  build-depends:       base >= 4.6 && < 4.9
-                     , transformers >= 0.4.2 && < 0.5
-                     , gloss >= 1.9.2.1 && < 1.10
-                     , gloss-algorithms >= 1.9.2.1 && < 1.10
-                     , reflex >= 0.3 && < 0.4
-                     , reflex-gloss >= 0.1 && < 0.2
-                     , dependent-sum >= 0.2.1 && < 0.3
+  build-depends:       base
+                     , transformers
+                     , gloss
+                     , gloss-algorithms
+                     , reflex
+                     , reflex-gloss
+                     , dependent-sum
 
   default-language:    Haskell2010
   ghc-options: -W -Wall
