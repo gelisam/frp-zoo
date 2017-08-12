@@ -8,12 +8,12 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 executable reflex-example
-  hs-source-dirs:      ., ../shared
+  hs-source-dirs:      .
   main-is:             Main.hs
   build-depends:       base
-                     , transformers
+                     , buttons-gui
                      , gloss
-                     , gloss-algorithms
+                     , transformers
                      , reflex
                      , reflex-gloss
                      , dependent-sum
