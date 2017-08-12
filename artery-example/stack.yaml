@@ -1,0 +1,15 @@
+resolver: lts-2.22
+
+packages:
+- ../shared
+- .
+
+extra-deps:
+- GLURaw-1.4.0.2
+- GLUT-2.5.1.1
+- OpenGL-2.9.2.0
+- OpenGLRaw-1.5.0.1
+- artery-0.1.1
+- gloss-1.9.2.1
+- gloss-algorithms-1.9.2.1
+- gloss-rendering-1.9.2.1
