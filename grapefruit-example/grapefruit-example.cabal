@@ -8,11 +8,11 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 executable grapefruit-example
-  hs-source-dirs:      ., ../shared, ../callback-example
+  hs-source-dirs:      ., ../callback-example/
   main-is:             Main.hs
   build-depends:       base
-                     , gloss >=1.9.2.1
-                     , gloss-algorithms >=1.9.2.1
-                     , grapefruit-frp >=0.1.0.3
+                     , buttons-gui
+                     , gloss
+                     , grapefruit-frp
   default-language:    Haskell2010
   ghc-options: -W -Wall

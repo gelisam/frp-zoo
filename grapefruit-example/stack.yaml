@@ -1,0 +1,12 @@
+resolver: lts-9.0
+
+packages:
+- ../shared
+- .
+
+extra-deps:
+- Stream-0.4.7.2
+- arrows-0.4.4.1
+- gloss-algorithms-1.11.1.1
+- grapefruit-frp-0.1.0.7
+- lazysmallcheck-0.6
