@@ -1,4 +1,5 @@
 cabal.sandbox.config
 .cabal-sandbox
+.stack-work
 .ghci
 dist
