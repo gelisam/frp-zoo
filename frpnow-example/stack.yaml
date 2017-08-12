@@ -1,0 +1,10 @@
+resolver: lts-9.0
+
+packages:
+- ../shared
+- .
+
+extra-deps:
+- frpnow-0.18
+- frpnow-gloss-0.12
+- gloss-algorithms-1.11.1.1
