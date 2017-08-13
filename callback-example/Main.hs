@@ -1,11 +1,11 @@
 module Main where
 
-import Control.Applicative
 import Data.IORef
 import Graphics.Gloss.Interface.IO.Game
 
 import Buttons
 import CallbackSystem
+import GlossInterface
 
 
 main :: IO ()
@@ -61,15 +61,21 @@ main = do
         
         -- Gloss event loop
         
-        playIO (InWindow "Callback Example" (320, 240) (800, 200))
-               white
-               30
-               ()
-               render
-               (\e () -> do processEvent (filter0  e) onClick0  onToggle0
-                            processEvent (filter5  e) onClick5  onToggle5
-                            processEvent (filter10 e) onClick10 onToggle10)
-               (\_ _ -> return ())
+        eventHook <- newHook
+        pictureRef <- newIORef =<< render
+
+        registerCallback eventHook $ \e -> do
+          processEvent (filter0  e) onClick0  onToggle0
+          processEvent (filter5  e) onClick5  onToggle5
+          processEvent (filter10 e) onClick10 onToggle10
+
+          writeIORef pictureRef =<< render
+
+        playHook (InWindow "Callback Example" (320, 240) (800, 200))
+                 white
+                 30
+                 pictureRef
+                 eventHook
       
       where
         
@@ -141,8 +147,8 @@ main = do
             then readIORef countRef
             else return (-1)
         
-        render :: () -> IO Picture
-        render () = renderButtons
-                <$> chooseLabel count0  mode0  <*> pure Nothing
-                <*> chooseLabel count5  mode5  <*> pure Nothing
-                <*> chooseLabel count10 mode10 <*> pure Nothing
+        render :: IO Picture
+        render = renderButtons
+             <$> chooseLabel count0  mode0  <*> pure Nothing
+             <*> chooseLabel count5  mode5  <*> pure Nothing
+             <*> chooseLabel count10 mode10 <*> pure Nothing

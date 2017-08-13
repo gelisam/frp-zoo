@@ -10,6 +10,8 @@ cabal-version:       >=1.10
 executable callback-example
   hs-source-dirs:      .
   main-is:             Main.hs
+  other-modules:       CallbackSystem
+                     , GlossInterface
   build-depends:       base
                      , buttons-gui
                      , gloss
