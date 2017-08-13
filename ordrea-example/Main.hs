@@ -18,10 +18,10 @@ if_then_else False _ f = f
 whenE :: TimeFunction s => s Bool -> Event a -> Event a
 whenE sig ev = fmap snd $ filterE fst $ (,) <$> sig <@> ev
 
-generatorD :: Discrete (SignalGen a) -> SignalGen (Discrete a)
-generatorD dis = do
+generatorD :: a -> Discrete (SignalGen a) -> SignalGen (Discrete a)
+generatorD x0 dis = do
   ev <- generatorE =<< preservesD dis
-  stepperD undefined ev
+  stepperD x0 ev
 
 
 -- FRP network
@@ -61,7 +61,7 @@ mainOrdrea _ glossEvent = do
   let newCount0 :: SignalGen (Discrete Int)
       newCount0 = scanD 0 $ (+1) <$ click0
   newCount <- stepperD newCount0 $ newCount0 <$ toggle0
-  dynamicCount0 <- joinDD =<< generatorD newCount
+  dynamicCount0 <- joinDD =<< generatorD count0 newCount
   
 
   -- Output
