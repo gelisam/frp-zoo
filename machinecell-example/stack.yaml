@@ -1,0 +1,9 @@
+resolver: lts-9.0
+
+packages:
+- ../shared
+- .
+
+extra-deps:
+- gloss-algorithms-1.11.1.1
+- machinecell-3.3.2
