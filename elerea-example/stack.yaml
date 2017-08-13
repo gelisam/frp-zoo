@@ -1,0 +1,9 @@
+resolver: lts-9.0
+
+packages:
+- ../shared
+- .
+
+extra-deps:
+- elerea-2.6.0
+- gloss-algorithms-1.11.1.1
